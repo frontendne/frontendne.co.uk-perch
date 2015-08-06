@@ -1,0 +1,27 @@
+// Breakpoint mixin, taken from:
+// http://www.sitepoint.com/managing-responsive-breakpoints-sass/#with-a-configurable-mixin
+
+$breakpoints: (
+    large : 52em,
+    medium : 38em,
+    small : 28em
+);
+
+$default-breakpoint: root;
+$current-breakpoint: $default-breakpoint;
+
+@mixin breakpoint($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+
+    @if $value != null {
+        $current-breakpoint: $breakpoint !global;
+
+        @media (min-width: $value) {
+            @content;
+        }
+
+        $current-breakpoint: $default-breakpoint !global;
+    } @else {
+        @warn "Invalid breakpoint '#{$breakpoint}'.";
+    }
+}

@@ -1,0 +1,36 @@
+default:
+ - 'serve'
+
+serve:
+ - 'svgstore'
+ - 'recompile'
+ - 'browserSync'
+ - 'watch'
+
+build:
+ - 'lint'
+ - 'svgstore'
+ - 'recompile'
+
+recompile:
+ - 'js'
+ - 'css'
+ - 'binary'
+
+lint:
+ - 'newer:scsslint'
+ - 'newer:jshint'
+
+css:
+ - 'sass'
+ - 'autoprefixer'
+
+js:
+ - 'browserify'
+ - 'uglify'
+ - 'copy:js'
+
+binary:
+ - 'copy:images'
+ - 'copy:favicon'
+ - 'copy:fonts'
