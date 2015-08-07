@@ -1,6 +1,7 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    runSequence = require('run-sequence');
 
 gulp.task('default', function(cb) {
-    // Gulp tasks go in here
+    runSequence('watch-with-browser-sync');
 });
 
