@@ -1,14 +1,13 @@
 'use strict';
 var gulp = require('gulp'),
-    browserify = require('gulp-browserify');
+    browserify = require('gulp-browserify'),
+    runSequence = require('run-sequence');
   
 gulp.task('js:dev', function () {
-    gulp.src('./assets/js/*.js')
-        .pipe(browserify({
-            insertGlobals: true,
-            debug: true
-        }))
-        .pipe(gulp.dest('./web/cms/addons/feathers/frontendne/scripts'));
+    runSequence([
+        'jshint',
+        'browserify:dev'
+    ]);
 });
 
 gulp.task('js:watch', function () {
