@@ -11,6 +11,14 @@ gulp.task('sass:dev', function () {
     ]);
 });
 
+gulp.task('sass:build', function () {
+    runSequence([
+        'scss-lint',
+        'compile-sass:build',
+        'postcss:build',
+    ]);
+});
+
 gulp.task('sass:watch', function () {
     gulp.watch('./assets/scss/**/*.scss', ['sass:dev']);
 });
