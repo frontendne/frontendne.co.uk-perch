@@ -3,7 +3,7 @@
     backface-visibility: hidden;
     background-color: $color__white;
     border: 0;
-    border-bottom: pow($ratio--inv, 2)#{em} solid $color__gray;
+    border-bottom: pow($ratio--inv, 2) + em solid $color__gray;
     border-radius: 0;
     color: $color__black;
     display: block;

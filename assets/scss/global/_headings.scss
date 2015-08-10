@@ -10,7 +10,7 @@
 h1 {
     @extend %hn;
 
-    font-size: pow($ratio, 1)#{em};
+    font-size: pow($ratio, 1) + em;
 }
 
 h2 {
