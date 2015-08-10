@@ -1,6 +1,7 @@
 'use strict';
 var gulp = require('gulp'),
-    browserify = require('gulp-browserify');
+    browserify = require('gulp-browserify'),
+    uglify = require('gulp-uglify');
 
 gulp.task('browserify:dev', function () {
     gulp.src('./assets/js/*.js')
@@ -17,5 +18,6 @@ gulp.task('browserify:build', function () {
             insertGlobals: false,
             debug: false
         }))
+        .pipe(uglify())
         .pipe(gulp.dest('./web/cms/addons/feathers/frontendne/scripts'));
 });
