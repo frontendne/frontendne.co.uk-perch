@@ -4,7 +4,8 @@ var gulp = require('gulp'),
 gulp.task('default', function(cb) {
     runSequence([
         'sass:dev',
-        'watch-with-browser-sync'
+        'js:dev',
+        'watch'
     ]);
 });
 
