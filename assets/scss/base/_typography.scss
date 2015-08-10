@@ -22,12 +22,12 @@ html {
 body {
 
     @include breakpoint(medium) {
-        font-size: 16 / $base-font-size#{em};
+        font-size: 1 / $base-font-size * 16em;
         line-height: $line-height;
     }
 
     @include breakpoint(large) {
-        font-size: 18 / $base-font-size#{em};
+        font-size: 1 / $base-font-size * 18em;
         line-height: $line-height;
     }
 }
