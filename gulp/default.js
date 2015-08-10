@@ -3,7 +3,6 @@ var gulp = require('gulp'),
 
 gulp.task('default', function(cb) {
     runSequence([
-        'scss-lint',
         'sass:dev',
         'js:dev',
         'watch'
