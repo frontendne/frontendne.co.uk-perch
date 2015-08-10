@@ -7,6 +7,7 @@ gulp.task('sass:dev', function () {
     runSequence([
         'scss-lint',
         'compile-sass:dev',
+        'postcss:dev',
     ]);
 });
 
