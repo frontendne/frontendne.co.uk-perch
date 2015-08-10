@@ -10,6 +10,13 @@ gulp.task('js:dev', function () {
     ]);
 });
 
+gulp.task('js:build', function () {
+    runSequence([
+        'jshint',
+        'browserify:build'
+    ]);
+});
+
 gulp.task('js:watch', function () {
     gulp.watch('./assets/js/**/*.{js,json}', ['js:dev']);
 });

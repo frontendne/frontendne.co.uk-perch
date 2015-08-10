@@ -16,6 +16,7 @@ gulp.task('dev', function(cb) {
 gulp.task('build', function(cb) {
     runSequence([
         'sass:build',
+        'js:build',
     ]);
 });
 
