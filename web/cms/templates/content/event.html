@@ -1,4 +1,4 @@
-<perch:content id="date" type="date" format="F Y" label="Event date" required="true" order="2" suppress="true" />
+<perch:content id="date" type="date" format="c"  label="Event date" required="true" order="2" suppress="true" />
 <perch:content id="ticketSalesDate" type="date" time="true" format="%s" label="Ticket On Sale" required="true" order="2" suppress="true" />
 <perch:content id="titoCode" type="text" label="Tito Code (no Url)" order="3" suppress="true" />
 
@@ -12,8 +12,7 @@
 
     <a href="#map" class="location"><perch:template path="includes/svg/location.svg" />Campus North</a>
     
-        <perch:content id="archived" />
-    <perch:if id="date" match="lte" value="{todaysDate}" format="%s">
+    <perch:if id="date" match="gte" value="{todaysDate}" format="%s">
         <perch:if  id="ticketSalesDate" match="lte" value="{todaysDate}" format="%s">
             <div class="event-promotion__buttons">
                         <tito-button event="frontendne/<perch:content id="titoCode" />">Get a ticket</tito-button>
@@ -30,13 +29,10 @@
 
     <div class="event-promotion__buttons">
 
-    <perch:content id="archived" type="checkbox" label="Archived" value="yes" suppress="true" />
-
     </div>
 </div>
 
-    <perch:content id="archived" />
-    <perch:if id="date" match="lte" value="{todaysDate}" format="%s">
+    <perch:if id="date" match="gte" value="{todaysDate}" format="%s">
         <perch:if  id="ticketSalesDate" match="lte" value="{todaysDate}" format="%s">
         <div class="tito-box">
                 <div class="wrapper">
@@ -44,11 +40,12 @@
                 </div>
             </div>
          </perch:if>
-    </perch:if>
+   </perch:if>
 
 <div class="wrapper">
 
-<perch:content id="slug" type="slug" for="title" suppress="true" indelible="true" />
+<perch:content id="slug" label="Event URL" type="slug" for="date_year date_month" suppress="true" format="F-Y"  urlify="true"  editable="true" />
+
 
 <perch:noresults>
         <h1>404</h1>
