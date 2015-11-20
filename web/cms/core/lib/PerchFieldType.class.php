@@ -13,39 +13,39 @@ class PerchFieldType
      * @var string
      */
     protected $Form = false;
-    
+
     /**
      * The tag object for the field
      *
      * @var string
      */
     protected $Tag = false;
-    
-    
+
+
     /**
      * The field ID used with setting the required validation
      *
      * @var string
      */
     protected $required_id = false;
-    
-    
+
+
     /**
      * A unique ID for using when e.g. outputting unique elements to the HTML
      *
      * @var string
      */
     protected $unique_id = false;
-    
-    
+
+
     /**
      * The un-processed item
      *
      * @var string
      */
     protected $raw_item = false;
-    
-    
+
+
     /**
      * All the tags from the template
      *
@@ -67,24 +67,24 @@ class PerchFieldType
      */
     public $app_id = false;
 
-   
+
     public function __construct($Form, $Tag, $app_id)
     {
         $this->Form   = $Form;
         $this->Tag    = $Tag;
         $this->app_id = $app_id;
-        
+
         $this->required_id = $Tag->input_id();
 
         $this->add_class_dependancies();
-    
+
     }
-    
+
     public function add_page_resources()
     {
-        
+
     }
-    
+
     public function add_class_dependancies()
     {
 
@@ -93,7 +93,7 @@ class PerchFieldType
     /**
      * Set the unique ID used by this field for rendering
      *
-     * @param string $id 
+     * @param string $id
      * @return void
      * @author Drew McLellan
      */
@@ -101,7 +101,7 @@ class PerchFieldType
     {
         $this->unique_id = $id;
     }
-    
+
     /**
      * Get the field ID for required valiation
      *
@@ -116,7 +116,7 @@ class PerchFieldType
     /**
      * Generate HTML string of form input controls
      *
-     * @param string $details 
+     * @param string $details
      * @return void
      * @author Drew McLellan
      */
@@ -124,11 +124,35 @@ class PerchFieldType
     {
         $s = '';
         $id = $this->Tag->id();
-        $s = $this->Form->text($this->Tag->input_id(), $this->Form->get($details, $id, $this->Tag->default(), $this->Tag->post_prefix()), $this->Tag->size(), $this->Tag->maxlength());
-                
+        $attrs = array();
+
+        if ($this->Tag->placeholder()) {
+            $attrs[] = 'placeholder="'.PerchUtil::html($this->Tag->placeholder(), true).'"';
+        }
+
+        if ($this->Tag->count()) {
+            if ($this->Tag->count()=='chars') $attrs[] = 'data-count="chars"';
+            if ($this->Tag->count()=='words') $attrs[] = 'data-count="words"';
+            $attrs[] = 'data-count-container="' . $this->Tag->input_id().'__count"';
+        }
+
+        $attrs = implode(' ', $attrs);
+
+        $s = $this->Form->text($this->Tag->input_id(), 
+                            $this->Form->get($details, $id, $this->Tag->default(), $this->Tag->post_prefix()), 
+                            $this->Tag->size(), 
+                            $this->Tag->maxlength(), 
+                            'text', 
+                            $attrs.$this->Tag->get_data_attribute_string()
+                        );
+
+        if ($this->Tag->count()) {
+            $s .= '<div class="counter text-counter" id="'.$this->Tag->input_id().'__count"></div>';
+        }
+
         return $s;
     }
-    
+
     /**
      * Get raw value
      *
@@ -140,16 +164,16 @@ class PerchFieldType
         if ($post===false) {
             $post = $_POST;
         }
-        
+
         $id = $this->Tag->id();
         if (isset($post[$id])) {
             $this->raw_item = trim(PerchUtil::safe_stripslashes($post[$id]));
             return $this->raw_item;
         }
-        
+
         return null;
     }
-    
+
     /**
      * Get processed value
      *
@@ -159,23 +183,23 @@ class PerchFieldType
     public function get_processed($raw=false)
     {
         if ($raw===false) $raw = $this->get_raw();
-        
+
         $value = $raw;
-    
+
         return $value;
     }
-    
+
     /**
      * Get the text used for search indexing
      *
-     * @param string $raw 
+     * @param string $raw
      * @return void
      * @author Drew McLellan
      */
     public function get_search_text($raw=false)
     {
         if ($raw===false) $raw = $this->get_raw();
-        
+
         return $raw;
     }
 
@@ -187,7 +211,7 @@ class PerchFieldType
     public function get_index($raw=false)
     {
         if ($raw===false) $raw = $this->get_raw();
-        
+
         $id = $this->Tag->id();
 
         $out = array();
@@ -223,11 +247,11 @@ class PerchFieldType
     {
         return PerchUtil::html($this->get_processed($raw));
     }
-    
+
     /**
      * Set sibling tags
      *
-     * @param string $tags 
+     * @param string $tags
      * @return void
      * @author Drew McLellan
      */
@@ -235,8 +259,8 @@ class PerchFieldType
     {
         $this->sibling_tags = $tags;
     }
-    
-    
+
+
     /**
      * Get sibling tags from the template, if set.
      *
@@ -247,5 +271,5 @@ class PerchFieldType
     {
         return $this->sibling_tags;
     }
-    
+
 }
