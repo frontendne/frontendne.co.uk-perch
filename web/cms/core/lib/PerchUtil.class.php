@@ -1194,4 +1194,24 @@ class PerchUtil
 		return false;
 	}
 
+	public static function find_executable_files_in_resources()
+	{
+		$files = PerchUtil::get_dir_contents(PERCH_RESFILEPATH, false);
+		if (PerchUtil::count($files)) {
+			$out = array();
+			$bad_ext = array('php', 'phtml', 'php3', 'php4', 'php5');
+			foreach($files as $file) {
+				$ext = PerchUtil::file_extension($file);
+				if (in_array($ext, $bad_ext)) {
+					$out[] = $file;
+				}
+			}
+			if (PerchUtil::count($out)) {
+				return $out;
+			}
+		}
+
+		return false;	
+	}
+
 }
