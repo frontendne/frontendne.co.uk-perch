@@ -3,7 +3,8 @@ var gulp = require('gulp'),
 
 gulp.task('watch-with-browser-sync', function() {
     browserSync.init({
-        proxy: 'http://frontendne.local'
+        proxy: 'http://frontendne.local',
+        browser: "google chrome"
     });
 
     gulp.watch([
