@@ -2,18 +2,84 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+li,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -30,18 +96,27 @@ fieldset {
   border-color: transparent; }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block; }
 
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
+blockquote,
+q {
   quotes: none; }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none; }
 
@@ -245,6 +320,7 @@ animation__bounce-in-down,
     -webkit-transform: translate3d(0, -2000px, 0);
             transform: translate3d(0, -2000px, 0); } }
 
+
 .animation__bounce-out-up {
   -webkit-animation-name: bounce-out-up;
           animation-name: bounce-out-up; }
@@ -260,6 +336,7 @@ animation__bounce-in-down,
     opacity: 0; }
   100% {
     opacity: 1; } }
+
 
 .animation__fade-in {
   -webkit-animation-name: fade-in;
@@ -281,6 +358,7 @@ animation__bounce-in-down,
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
+
 .animation__spin {
   -webkit-animation-name: spin;
           animation-name: spin; }
@@ -301,7 +379,7 @@ html {
   direction: ltr;
   display: block;
   font-family: futura, verdana, sans-serif;
-  font-size: 14px;
+  font-size: 0.85714em;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
   line-height: 1.61803em;
@@ -331,6 +409,7 @@ html,
 body {
   height: 100%;
   width: 100%; }
+
 
 .wrapper {
   margin: 0 auto;
@@ -384,7 +463,6 @@ h4 {
   font-weight: 600;
   line-height: 1em;
   margin: 1.61803em 0 0.61803em;
-  text-align: center;
   text-transform: uppercase; }
 
 h1 {
@@ -484,10 +562,7 @@ p {
           transition: background-color 0.4s, opacity 0.24721s, transform 0.4s;
   width: 100%; }
   [type=submit]:hover,
-  .button:hover,
-  tito-button:hover,
-  .sold-out:hover,
-  [type=submit]:focus,
+  .button:hover, tito-button:hover, .sold-out:hover, [type=submit]:focus,
   .button:focus, tito-button:focus, .sold-out:focus {
     background: #52b2d4;
     color: #fff;
@@ -528,10 +603,12 @@ p {
     display: -ms-flexbox;
     display: flex; } }
 
-.event-promotion__buttons [type=submit], .event-promotion__buttons .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
+.event-promotion__buttons [type=submit], .event-promotion__buttons
+.button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
   margin: 0.61803em 0; }
   @media (min-width: 28em) {
-    .event-promotion__buttons [type=submit], .event-promotion__buttons .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
+    .event-promotion__buttons [type=submit], .event-promotion__buttons
+    .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
       margin: 0.61803em; } }
 
 [class*='mailing-list__sign-up'] {
@@ -550,38 +627,31 @@ p {
 
 .mailing-list__sign-up__form {
   -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
           transform: translateX(-100%); }
   .mailing-list__sign-up--form .mailing-list__sign-up__form {
     opacity: 1;
     -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
             transform: translateX(0); }
 
 .mailing-list__sign-up__loading {
   text-align: center; }
   .mailing-list__sign-up--form .mailing-list__sign-up__loading {
     -webkit-transform: translateX(100%);
-        -ms-transform: translateX(100%);
             transform: translateX(100%); }
   .mailing-list__sign-up--loading .mailing-list__sign-up__loading {
     opacity: 1;
     -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
             transform: translateX(0); }
   .mailing-list__sign-up--response .mailing-list__sign-up__loading {
     -webkit-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
             transform: translateX(-100%); }
 
 .mailing-list__sign-up__response {
   -webkit-transform: translateX(100%);
-      -ms-transform: translateX(100%);
           transform: translateX(100%); }
   .mailing-list__sign-up--response .mailing-list__sign-up__response {
     opacity: 1;
     -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
             transform: translateX(0); }
 
 .main__header {
@@ -620,7 +690,7 @@ p {
   color: rgba(0, 0, 0, 0.75);
   cursor: -webkit-grab;
   cursor: grab;
-  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   outline: 0;
   overflow: hidden; }
   .leaflet-container .leaflet-image-layer {
@@ -749,8 +819,8 @@ p {
 .leaflet-fade-anim .leaflet-tile,
 .leaflet-fade-anim .leaflet-popup {
   opacity: 0;
-  -webkit-transition: opacity 0.2s linear;
-          transition: opacity 0.2s linear; }
+  -webkit-transition: opacity .2s linear;
+          transition: opacity .2s linear; }
 
 .leaflet-fade-anim .leaflet-tile-loaded,
 .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
@@ -1040,12 +1110,10 @@ tito-button button {
   background: #e07253;
   cursor: auto;
   margin: 0.61803em 0; }
-  .sold-out:hover,
-  .sold-out:focus {
+  .sold-out:hover, .sold-out:focus {
     background: #e07253; }
 
 .invalid ~ [type=submit] {
   opacity: 0;
   -webkit-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
           transform: translateY(-100%); }

@@ -11,8 +11,8 @@
     font-size: 1em;
     font-weight: 400;
     line-height: 1em;
-    margin: 0 0 $ratio--inv#{em};
-    padding: $ratio--inv#{em};
+    margin: 0 0 #{$ratio--inv}em;
+    padding: #{$ratio--inv}em;
     position: relative;
     transform: translateZ(0);
     transition: border $animation__timing--interaction;

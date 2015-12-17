@@ -2,8 +2,8 @@
     background-color: $color__black;
     color: $color__gray--light;
     display: flex;
-    margin: $ratio#{em} 0 0;
-    padding: $ratio#{em} 0;
+    margin: #{$ratio}em 0 0;
+    padding: #{$ratio}em 0;
     text-align: center;
 
     a:not(.button) {
@@ -17,13 +17,13 @@ tito-button {
     button {
         background: transparent;
         border: 0;
-        color: currentcolor;        
+        color: currentcolor;
         cursor: pointer;
         font-family: $body-font;
         font-size: 1em;
         line-height: 1em;
         margin: 0;
-        padding: 0;    
+        padding: 0;
         text-transform: uppercase;
     }
 }
