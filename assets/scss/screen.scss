@@ -5,18 +5,23 @@
         'base/mixins',
         'base/typography';
 
+@import '../components/susy/sass/susy',
+        'layout/base';
+
 @import 'global/base',
         'global/forms',
         'global/headings',
         'global/icons',
         'global/links',
-        'global/text';
+        'global/text',
+        'global/images';
 
 @import 'components/buttons',
         'components/event-promotion',
         'components/mailing-list__sign-up',
         'components/main__header',
         'components/navigation',
+        'components/profile',
         'components/map',
         'components/mapbox',
         'components/titobox',
