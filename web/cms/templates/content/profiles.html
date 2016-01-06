@@ -1,5 +1,5 @@
 <perch:before>
-  <section class="organisers">
+  <section class="profile">
     <h1>Meet the team</h1>
     <ul>
 </perch:before>
@@ -7,7 +7,7 @@
       <li>
         <h2><perch:content id="name" type="text" label="Name" required="true" title="true" /></h2>
         <perch:if exists="image">
-          <img src="<perch:content type="image" id="image" label="Image" width="300" height="300" density="2" quality="40" crop="true" bucket="organisers" />" alt="<perch:content type="text" id="name" /> of Frontend NE" />
+          <img class="avatar" src="<perch:content type="image" id="image" label="Image" width="300" height="300" density="2" quality="100" crop="true" bucket="avatars" />" alt="<perch:content type="text" id="name" />" />
         </perch:if>
         <perch:content id="bio" type="textarea" label="Bio" markdown="true" required="true" size="s" />
 
