@@ -44,6 +44,7 @@
             if (is_array(getimagesize($_FILES['customlogo']['tmp_name']))) {
         	    $filename = $_FILES['customlogo']['name'];
                 if (strpos($filename, '.php')!==false) $filename .= '.txt'; // diffuse PHP files
+                if (strpos($filename, '.phtml')!==false) $filename .= '.txt'; // diffuse PHP files
                 $target = PERCH_RESFILEPATH.'/'.$filename;
                 if (file_exists($target)) {
                     $filename = time().'_'.$_FILES['customlogo']['name'];

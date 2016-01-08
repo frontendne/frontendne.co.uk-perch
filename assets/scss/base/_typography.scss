@@ -2,7 +2,7 @@ $primary-font : futura, verdana, sans-serif;
 $heading-font: $primary-font;
 $body-font: $primary-font;
 
-$line-height: $ratio#{em};
+$line-height: #{$ratio}em;
 $font-weight: 300;
 $base-font-size: 14;
 
@@ -10,7 +10,7 @@ html {
     direction: ltr;
     display: block;
     font-family: $body-font;
-    font-size: $base-font-size#{px};
+    font-size: 1 / $base-font-size * 12em;
     -webkit-font-smoothing: antialiased;
     font-weight: $font-weight;
     line-height: $line-height;

@@ -23,9 +23,6 @@
 			}
 		}
 
-		perch_find_posted_forms();
-		perch_runway_content_check_preview();
-
 		$Perch = Perch::fetch();
 		$Perch->event('page.loaded');
 

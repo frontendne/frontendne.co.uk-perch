@@ -8,6 +8,15 @@
 
 	PerchSystem::register_search_handler('PerchContent_RunwaySearch');
 
+    if (PERCH_RUNWAY_ROUTED) {
+        $Perch = Perch::fetch();
+        $Perch->on('page.loaded', function(){
+            perch_runway_content_check_preview();
+        });
+    }else{
+        perch_runway_content_check_preview();
+    }
+
 	function perch_collection($key=false, $opts=false, $return=false)
     {
         if ($key === false) return ' ';
