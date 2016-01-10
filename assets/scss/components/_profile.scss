@@ -3,10 +3,11 @@
     ul {
         @include remove-list-marker;
     }
+}
 
-    .avatar {
-        @include layout($default);
-        @include span(last 2 of 4);
-        margin-left: gutter();
-    }
+.avatar {
+    @include layout($default);
+    @include span(last 2 of 4);
+    margin-left: gutter();
+    margin-bottom: gutter();
 }
