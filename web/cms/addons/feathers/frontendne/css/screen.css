@@ -544,6 +544,10 @@ img {
   height: auto;
   max-width: 100%; }
 
+.index-list {
+  padding-left: 0;
+  list-style-type: none; }
+
 [type=submit],
 .button, tito-button, .sold-out {
   -webkit-appearance: none;
@@ -708,11 +712,12 @@ img {
   padding-left: 0;
   list-style-type: none; }
 
-.profile .avatar {
+.avatar {
   width: 47.36842%;
   float: right;
   margin-right: 0;
-  margin-left: 5.26316%; }
+  margin-left: 5.26316%;
+  margin-bottom: 5.26316%; }
 
 .map {
   height: 512px;
