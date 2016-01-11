@@ -14,5 +14,7 @@
       'count'    => 1,
   ]);
 
+  echo '‹ <a href="/speakers/">Back to speakers</a>';
+
   // Footer
   perch_layout('global/footer');
