@@ -1,7 +1,7 @@
 <?php
 
   // Header
-  perch_layout('global/head', [
+  perch_layout('speakers/head', [
     'body-class' => 'speaker',
   ]);
 

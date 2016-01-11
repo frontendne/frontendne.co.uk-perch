@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <title><?php
-      perch_collection('Events', [
+      perch_collection('Speakers', [
         'filter'   => 'slug',
         'match'    => 'eq',
         'value'    => perch_get('s'),
         'count'    => 1,
-        'template' =>'/meta/title_event.html',
+        'template' =>'/meta/title_speaker.html',
       ]);
-    ?></title>
+    ?> - Frontend NE</title>
     <meta name="description" content="<?php
-      perch_collection('Events', [
+      perch_collection('Speakers', [
         'filter'   => 'slug',
         'match'    => 'eq',
         'value'    => perch_get('s'),
         'count'    => 1,
-        'template' =>'/meta/description_event.html',
+        'template' =>'/meta/description_speaker.html',
       ]);
     ?>" />
-    <link rel="canonical" href="https://frontendne.co.uk/events/<?php
-      perch_collection('Events', [
+    <link rel="canonical" href="https://frontendne.co.uk/speakers/<?php
+      perch_collection('Speakers', [
         'filter'   => 'slug',
         'match'    => 'eq',
         'value'    => perch_get('s'),
@@ -30,8 +30,8 @@
         'template' =>'/meta/slug.html',
       ]);
     ?>" />
-    <?php perch_layout('events/_open_graph'); ?>
-    <?php perch_layout('events/_twitter_card'); ?>
+    <?php perch_layout('speakers/_open_graph'); ?>
+    <?php perch_layout('speakers/_twitter_card'); ?>
     <?php perch_layout('global/_apple_touch_icon'); ?>
     <?php perch_layout('global/_favicon'); ?>
     <?php perch_content('Google Analytics'); ?>
