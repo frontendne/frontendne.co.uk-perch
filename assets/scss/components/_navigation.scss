@@ -33,4 +33,13 @@
             position: absolute; // Removes from document flow
         }
     }
+
+    .selected,
+    .ancestor {
+      
+        a {
+          text-decoration: underline;
+        }
+
+    }
 }
