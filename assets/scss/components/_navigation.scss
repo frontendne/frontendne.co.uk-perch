@@ -1,0 +1,36 @@
+[role="navigation"] {
+    margin-bottom: 3em;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+        &:link,
+        &:visited {
+            color: $color__black;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        display: inline-block;
+
+        &:before {
+            content: '/';
+        }
+
+        &:first-child:before {
+            content: '';
+            position: absolute; // Removes from document flow
+        }
+    }
+}

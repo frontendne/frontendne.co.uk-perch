@@ -22,3 +22,5 @@
 
     </div>
 </header>
+
+<?php perch_layout('global/navigation'); ?>
