@@ -7,4 +7,4 @@
     </div>
 </header>
 
-<?php perch_layout('global/navigation'); ?>
+<?php //perch_layout('global/navigation'); ?>
