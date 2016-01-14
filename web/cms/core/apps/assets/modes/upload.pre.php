@@ -27,7 +27,7 @@
         $Resources = new PerchResources;
 
 		$data = array();
-        $FieldType = PerchFieldTypes::get($FieldTag->type(), $Form, $FieldTag);
+        $FieldType = PerchFieldTypes::get($FieldTag->type(), $Form, $FieldTag, false, 'assets');
         $var       = $FieldType->get_raw();
 
         if (PerchUtil::count($var)) {

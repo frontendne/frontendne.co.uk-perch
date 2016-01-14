@@ -1,7 +1,7 @@
 'use strict';
 var gulp = require('gulp'),
     scsslint = require('gulp-scss-lint');
-  
+
 gulp.task('scss-lint', function () {
     gulp.src([
             './assets/scss/**/*.scss',

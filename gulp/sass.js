@@ -2,7 +2,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     runSequence = require('run-sequence');
-  
+
 gulp.task('sass:dev', function () {
     runSequence([
         'scss-lint',

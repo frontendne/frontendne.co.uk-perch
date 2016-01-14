@@ -2,8 +2,7 @@
     font-family: $heading-font;
     font-weight: 600;
     line-height: 1em;
-    margin: $ratio#{em} 0 $ratio--inv#{em};
-    text-align: center;
+    margin: #{$ratio}em 0 #{$ratio--inv}em;
     text-transform: uppercase;
 }
 
@@ -17,7 +16,7 @@ h2 {
     @extend %hn;
 
     font-size: ($ratio--inv / 2) + 1em;
-    margin-bottom: $ratio--inv#{em};
+    margin-bottom: #{$ratio--inv}em;
 }
 
 h3,

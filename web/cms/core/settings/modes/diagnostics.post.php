@@ -105,6 +105,9 @@
                     $messages[] = array('type'=>'warning', 'text'=>PerchLang::get('%sMemory limit is low.%s Memory use is limited to %sM, which could cause problems manipulating large images.', '<strong>', '</strong>', $memory_limit));
                 }
 
+                if (PerchUtil::find_executable_files_in_resources()) {
+                    $messages[] = array('type'=>'failure', 'text'=>PerchLang::get('%sThere are PHP files in your resources folder.%s These could be dangerous and a sign of a security breach.', '<strong>', '</strong>'));   
+                }
                 
 
 

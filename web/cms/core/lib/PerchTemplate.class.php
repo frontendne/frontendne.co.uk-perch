@@ -189,6 +189,9 @@ class PerchTemplate
 		// NO RESULTS
 		$contents   = $this->remove_noresults($contents);
 
+		// RUNWAY
+		$contents   = $this->remove_runway_tags($contents);
+
 		// UNMATCHED TAGS
 		$contents 	= $this->remove_unmatched_tags($contents);
 
@@ -715,6 +718,21 @@ class PerchTemplate
         }
     }
 
+    public function remove_runway_tags($contents)
+    {
+    	if (strpos($contents, 'perch:runway')) {
+        	$s = '/<perch:runway[^>]*>(.*?)<\/perch:runway>/s';
+        	if (PERCH_RUNWAY) {
+        		return preg_replace($s, '$1', $contents);
+        	}else{
+        		return preg_replace($s, '', $contents);	
+        	}
+        	
+        }else{
+        	return $contents;
+        }
+    }
+
     public function use_noresults()
     {
     	$contents = $this->load();
@@ -784,7 +802,7 @@ class PerchTemplate
 	        			    $contents = str_replace($match[0], $subtemplate, $contents);
 	        			    PerchUtil::debug('Using sub-template: '.str_replace(PERCH_PATH, '', $file), 'template');
 	    			    }else{
-	    			    	PerchUtil::debug('Requested sub-template not found: '.$file, 'template');
+	    			    	PerchUtil::debug('Requested sub-template not found: '.$file, 'template-error');
 	    			    }
 	    			}
 	    			$this->cache[$this->template]	= $contents;
