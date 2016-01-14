@@ -1,16 +1,20 @@
 <perch:before>
-  <ul class="index-list">
+  <speakers>
+    <h1>Speakers</h1>
+    <ul class="index-list">
 </perch:before>
 
-  <li>
-    <h2>
-      <a href="/speakers/<perch:content id="slug" type="slug" />">
-        <perch:content id="name" type="text" label="Name" required="true" title="true" />
-      </a>
-    </h2>
-    <p><perch:content id="bio" type="textarea" striptags="true" chars="200" append="…" /></p>
+    <li>
+      <h2>
+        <a href="/speakers/<perch:content id="slug" type="slug" />">
+          <perch:content id="name" type="text" label="Name" required="true" title="true" />
+        </a>
+      </h2>
+      <p><perch:content id="bio" type="textarea" striptags="true" chars="200" append="…" /></p>
+      <a href="/speakers/<perch:content id="slug" type="slug" />">Read more</a>
+    </li>
 
-      <a href="/speakers/<perch:content id="slug" type="slug" />">Speaker details</a>
-  </li>
-
-<perch:after></ul></perch:after>
+<perch:after>
+    </ul>
+  </speakers>
+</perch:after>
