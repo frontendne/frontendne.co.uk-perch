@@ -6,6 +6,7 @@
   ]);
 
   // Page content
+  perch_content('Primary content');
   perch_collection('Speakers', [
       'template'   => 'speaker_listing.html',
       'sort'       => 'name',
