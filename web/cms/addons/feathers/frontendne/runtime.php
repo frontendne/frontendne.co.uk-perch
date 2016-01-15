@@ -9,9 +9,10 @@
       $out = array();
 
       if (!$this->component_registered('style')) {
+        $version = filemtime($_SERVER['DOCUMENT_ROOT'].'/cms/addons/feathers/frontendne/css/screen.css');
         $out[] = $this->_single_tag('link', array(
             'rel'=>'stylesheet',
-            'href'=>$this->path.'/css/screen.css'
+            'href'=>$this->path.'/css/screen.css?v='.$version
           ));
         $this->register_component('style');
       }
