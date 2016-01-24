@@ -540,6 +540,14 @@ p {
   background-color: #309cc3;
   color: #fff; }
 
+img {
+  height: auto;
+  max-width: 100%; }
+
+.index-list {
+  padding-left: 0;
+  list-style-type: none; }
+
 [type=submit],
 .button, tito-button, .sold-out {
   -webkit-appearance: none;
@@ -699,6 +707,20 @@ p {
     [role="navigation"] li:first-child:before {
       content: '';
       position: absolute; }
+  [role="navigation"] .selected a,
+  [role="navigation"] .ancestor a {
+    text-decoration: underline; }
+
+.profile ul {
+  padding-left: 0;
+  list-style-type: none; }
+
+.avatar {
+  width: 47.36842%;
+  float: right;
+  margin-right: 0;
+  margin-bottom: 5.26316%;
+  margin-left: 5.26316%; }
 
 .map {
   height: 512px;
