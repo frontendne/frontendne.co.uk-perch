@@ -1,0 +1,22 @@
+<perch:before>
+  <div>
+    <h1>Talks</h1>
+    <ul class="index-list">
+</perch:before>
+
+      <li>
+        <h2>
+          <a href="/talks/<perch:content id="slug" type="slug" />">
+            <perch:content id="title" type="text" />
+          </a>
+        </h2>
+        <p><perch:content id="introduction" type="textarea" chars="200" append="…" /></p>
+        <div>
+          <a href="/talks/<perch:content id="slug" type="slug" />">Read more</a> ›
+        </div>
+      </li>
+
+<perch:after>
+    </ul>
+  </div>
+</perch:after>

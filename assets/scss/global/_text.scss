@@ -30,6 +30,7 @@ em,
 
 p {
     margin-bottom: #{$ratio--inv}em;
+    margin-top: #{$ratio--inv}em;
     max-width: 38em; // https://twitter.com/TrentWalton/status/431550755611213824
     word-wrap: break-word;
 }
