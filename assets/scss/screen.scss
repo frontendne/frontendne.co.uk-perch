@@ -1,25 +1,32 @@
-@import 'base/variables';
-@import 'base/reset';
-@import 'base/color-scheme';
-@import 'base/animations';
-@import 'base/mixins';
-@import 'base/typography';
+@import 'base/variables',
+        'base/reset',
+        'base/color-scheme',
+        'base/animations',
+        'base/mixins',
+        'base/typography';
 
-@import 'global/base';
-@import 'global/forms';
-@import 'global/headings';
-@import 'global/icons';
-@import 'global/links';
-@import 'global/text';
+@import '../components/susy/sass/susy',
+        'layout/base';
 
-@import 'components/buttons';
-@import 'components/event-promotion';
-@import 'components/mailing-list__sign-up';
-@import 'components/main__header';
-@import 'components/map';
-@import 'components/mapbox';
-@import 'components/titobox';
-@import 'components/sold-out';
-@import 'components/validation';
+@import 'global/base',
+        'global/forms',
+        'global/headings',
+        'global/icons',
+        'global/links',
+        'global/text',
+        'global/images',
+        'global/index-list';
+
+@import 'components/buttons',
+        'components/event-promotion',
+        'components/mailing-list__sign-up',
+        'components/main__header',
+        'components/navigation',
+        'components/profile',
+        'components/map',
+        'components/mapbox',
+        'components/titobox',
+        'components/sold-out',
+        'components/validation';
 
 @import 'base/shame';
