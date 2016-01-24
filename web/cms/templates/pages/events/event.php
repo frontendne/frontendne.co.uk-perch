@@ -16,5 +16,8 @@
     'count'    => 1,
   ]);
 
+  echo '<p>‹ <a href="/">Back to homepage</a></p>';
+  echo '<p><a href="/events/">View past event announcements</a> ›</p>';
+
   // Footer
   perch_layout('global/footer');
