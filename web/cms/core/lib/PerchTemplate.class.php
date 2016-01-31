@@ -259,10 +259,10 @@ class PerchTemplate
 	{
 		if (is_array($content_vars)) {
 
-			// Find all matching content tags
+			// Find all matching tags
 			$s 		= '#<perch:'.$namespace.'[^>]*/>#';
 			$count	= preg_match_all($s, $contents, $matches, PREG_SET_ORDER);
-
+	
 			if ($count) {
 				foreach($matches as $match) {
 					$match = $match[0];
@@ -271,9 +271,8 @@ class PerchTemplate
 					if ($tag->suppress) {
 						$contents = str_replace($match, '', $contents);
 					}else{
-						$key = $tag->id;
-						if (isset($content_vars[$key])) {
-							$value = $content_vars[$key];
+						if (isset($content_vars[$tag->id])) {
+							$value = $content_vars[$tag->id];
 						}else{
 							$replacement = '';
 							if ($tag->else()) $replacement = $tag->else();
@@ -285,11 +284,11 @@ class PerchTemplate
 						$field_is_markup = false;
 
 				        if ($tag->type) {
-				            $FieldType = PerchFieldTypes::get($tag->type, false, $tag);
-					        $modified_value = $FieldType->get_processed($value);
-								$field_is_markup = $FieldType->processed_output_is_markup;
+							$FieldType       = PerchFieldTypes::get($tag->type, false, $tag);
+							$modified_value  = $FieldType->get_processed($value);
+							$field_is_markup = $FieldType->processed_output_is_markup;
 				        }else{
-				            $modified_value = $value;
+				            $modified_value  = $value;
 				        }
 
 				        // check for 'rewrite' attribute
@@ -338,7 +337,6 @@ class PerchTemplate
                         	$modified_value = md5($modified_value);
                         }
 
-
 					    // check that what we've got isn't an array. If it is, try your best to get a good string.
 				        if (is_array($modified_value)) {
 				            if (isset($modified_value['_default'])) {
@@ -362,10 +360,12 @@ class PerchTemplate
 				        	$modified_value .= $tag->append;
 				        }
 
+				        // URL Encode
 					    if ($tag->urlencode) {
 				            $modified_value = rawurlencode($modified_value);
 				        }
 
+				        // Escape quotes
 				        if ($tag->escape) {
 				            $modified_value = PerchUtil::html($modified_value, true, false);
 				            $field_is_markup = true;
@@ -622,6 +622,7 @@ class PerchTemplate
 		    }
 
 		    return $final;
+
 		}
 
 		return false;
@@ -768,8 +769,9 @@ class PerchTemplate
     			// read and cache
     			PerchUtil::invalidate_opcache($this->file);
     			if (file_exists($this->file)){
-    				$contents 	= file_get_contents($this->file);
-    				$contents 	= $this->_strip_comments($contents);
+    				# PerchUtil::debug('Opening template file: '.$this->file, 'template');
+    				$contents = file_get_contents($this->file);
+    				$contents = $this->_strip_comments($contents);
     				$this->cache[$this->template]	= $contents;
     				$this->blocks = array();
     			}

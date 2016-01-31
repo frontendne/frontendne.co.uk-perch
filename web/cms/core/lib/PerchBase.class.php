@@ -26,9 +26,16 @@ class PerchBase
         $this->table    = PERCH_DB_PREFIX . $this->table;
     }
 
+    function __destruct()
+    {
+        $this->details = null;
+    }
+
     function __call($method, $arguments)
 	{
-		if (isset($this->details[$method])) {
+        if (isset($this->details[$method])) {
+            return $this->details[$method];
+        }else if (array_key_exists($method, $this->details)) {
 			return $this->details[$method];
 		}else{
 		    PerchUtil::debug('Looking up missing property ' . $method, 'notice');

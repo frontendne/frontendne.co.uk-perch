@@ -14,8 +14,15 @@ class PerchXMLTag
 
 	private function parse()
 	{
-		# http://ad.hominem.org/log/2005/05/quoted_strings.php - Thanks, Trent!
-		$count	= preg_match_all('{([a-z-]+)=[\"]([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)[\"]}', $this->tag, $matches, PREG_SET_ORDER);
+		$pattern = '{([a-z-]*)="([^"]*)"}';
+
+		// Do we have escaped quotes? If so, use heavier rexexp
+		if (strpos($this->tag, '\"')) {
+			# http://ad.hominem.org/log/2005/05/quoted_strings.php - Thanks, Trent!
+			$pattern = '{([a-z-]+)=[\"]([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)[\"]}';
+		}
+
+		$count	= preg_match_all($pattern, $this->tag, $matches, PREG_SET_ORDER);
 
 		if ($count > 0) {
 			foreach($matches as $match) {

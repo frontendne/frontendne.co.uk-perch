@@ -52,13 +52,11 @@
     
 	
 	if (isset($_POST['resetPwd']) && $_POST['resetPwd']=='1') {
-		$User->reset_pwd_and_notify();
-		$Alert->set('success', PerchLang::get('A new password has been sent by email.'));
+		$User->send_password_recovery_link();
+		$Alert->set('success', PerchLang::get('Password recovery instructions have been sent by email.'));
 	}
 
 
 
     $details = $User->to_array();
 
-
-?>

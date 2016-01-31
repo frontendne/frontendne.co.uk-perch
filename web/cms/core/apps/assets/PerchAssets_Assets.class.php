@@ -85,7 +85,7 @@ class PerchAssets_Assets extends PerchFactory
     public function get_available_buckets()
     {
     	$sql = 'SELECT DISTINCT resourceBucket FROM '.$this->table.' 
-    			WHERE resourceAWOL=0 AND resourceType !="" ORDER BY resourceType ASC';
+    			WHERE resourceAWOL=0 AND resourceType !=""';
     	$list = $this->db->get_rows_flat($sql);
         if (!$list) $list = array();
 
@@ -98,6 +98,8 @@ class PerchAssets_Assets extends PerchFactory
                 }
             }
         }
+
+        if ($list) sort($list);
 
         return $list;
     }

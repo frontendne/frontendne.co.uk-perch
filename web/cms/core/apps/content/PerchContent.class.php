@@ -353,7 +353,7 @@ class PerchContent extends PerchApp
             }
 
             $sql .= ' AND idx.itemID=idx2.itemID AND idx.itemRev=idx2.itemRev
-                    ) as tbl GROUP BY itemID ';
+                    ) as tbl GROUP BY itemID, pageID, itemJSON, sortval '; // DM added ', pageID, itemJSON, sortval' for MySQL 5.7
 
             if ($filter_mode=='AND' && PerchUtil::count($filters)>1) {
                 $sql .= ' HAVING count(*)='.PerchUtil::count($filters).' ';
@@ -440,7 +440,7 @@ class PerchContent extends PerchApp
                     if ($count) $sql .= ', '.$count;
                 }
             }
-   
+            
             $rows = $db->get_rows($sql);
 
             if (is_object($Paging)) {
@@ -502,28 +502,7 @@ class PerchContent extends PerchApp
             return 'The template <code>' . PerchUtil::html($template) . '</code> could not be found.';
         }
         
-        // post process
-        
-        /* Refactoring: this now looks surplus.
-        $tags           = $Template->find_all_tags('content');
-        $processed_vars = array();
-        $used_items     = array();
-        
-        foreach($content as $item) {
-            $tmp = $item;
-            if (PerchUtil::count($tags)) {
-                foreach($tags as $Tag) {
-                    
-                    if (isset($item[$Tag->id])) {                         
-                        $used_items[] = $item;
-                    }
-                }
-            }
-            if ($tmp) $processed_vars[] = $tmp;
-        }
-
-        Replacing with:
-        */      
+        // post process   
         $processed_vars = array();  
         foreach($content as $item) {
             $tmp = $item;
@@ -798,6 +777,12 @@ class PerchContent extends PerchApp
         if (PerchUtil::count($out)) {
             foreach($out as &$row) {
 
+                // compat
+                if (!$opts['no-conflict']) {
+                    $row['url'] = $row['result_url'];
+                    if (isset($row['result_result_url'])) $row['result_url'] = $row['result_result_url'];
+                }
+
                 // hide default doc
                 if ($opts['hide-default-doc']) {
                     $row['result_url'] = preg_replace('/'.preg_quote(PERCH_DEFAULT_DOC).'$/', '', $row['result_url']);
@@ -822,11 +807,7 @@ class PerchContent extends PerchApp
                     $row['result_url'] = rtrim($row['result_url'], '/').'/';
                 }
 
-                // compat
-                if (!$opts['no-conflict']) {
-                    $row['url'] = $row['result_url'];
-                    if (isset($row['result_result_url'])) $row['result_url'] = $row['result_result_url'];
-                }
+                
             }
 
             if (isset($Paging) && $Paging->enabled()) {

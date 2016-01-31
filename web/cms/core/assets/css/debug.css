@@ -27,6 +27,8 @@
 .perch-debug .template { color: skyblue; }
 .perch-debug .template-error { color: maroon; border-left-color: maroon; border-left-width: 2px; }
 .perch-debug .auth { color: olivedrab; border-left: 2px solid silver; }
+.perch-debug .perf-warn { background-color: #FAAC58; }
+.perch-debug .perf-bad { background-color: maroon; color: white; }
 
 table.showall {
 	border-collapse: collapse;
