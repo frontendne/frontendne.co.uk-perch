@@ -26,10 +26,16 @@
 }
 
 [type=email],
-[type=text] {
+[type=text],
+textarea {
     @extend %input;
 }
 
 label {
     display: block;
+}
+
+form {
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
