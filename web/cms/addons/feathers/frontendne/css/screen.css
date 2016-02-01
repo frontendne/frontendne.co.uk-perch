@@ -426,7 +426,8 @@ body {
   z-index: -99; }
 
 [type=email],
-[type=text] {
+[type=text],
+textarea {
   -webkit-appearance: none;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -450,12 +451,17 @@ body {
   width: 100%;
   z-index: 2; }
   [type=email]:focus,
-  [type=text]:focus {
+  [type=text]:focus,
+  textarea:focus {
     border-bottom-color: #309cc3;
     outline: none; }
 
 label {
   display: block; }
+
+form {
+  margin-top: 2em;
+  margin-bottom: 2em; }
 
 h1, h2, h3,
 h4 {
