@@ -31,11 +31,27 @@ textarea {
     @extend %input;
 }
 
+[type="submit"] {
+    margin-top: 1em;
+}
+
 label {
     display: block;
+    font-family: $heading-font;
+    margin-top: 1em;
 }
 
 form {
-    margin-top: 2em;
     margin-bottom: 2em;
+    margin-top: 2em;
+
+    small {
+        display: block;
+        font-style: italic;
+        line-height: 1.2;
+    }
+}
+
+textarea {
+    min-height: 8em;
 }
