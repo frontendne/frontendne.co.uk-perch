@@ -34,7 +34,6 @@ kbd,
 q,
 s,
 samp,
-small,
 strike,
 strong,
 sub,
@@ -378,7 +377,7 @@ animation__bounce-in-down,
 html {
   direction: ltr;
   display: block;
-  font-family: futura, verdana, sans-serif;
+  font-family: sans-serif, "Georgia", serif;
   font-size: 0.85714em;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
@@ -456,15 +455,31 @@ textarea {
     border-bottom-color: #309cc3;
     outline: none; }
 
+[type="submit"] {
+  margin-top: 1em; }
+
 label {
-  display: block; }
+  display: block;
+  font-family: futura, verdana, sans-serif;
+  margin-top: 1em; }
 
 form {
-  margin-top: 2em;
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  margin-top: 2em; }
+  form small {
+    display: block;
+    font-style: italic;
+    line-height: 1.2; }
 
-h1, h2, h3,
-h4 {
+textarea {
+  min-height: 8em; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: futura, verdana, sans-serif;
   font-weight: 600;
   line-height: 1em;
@@ -697,6 +712,7 @@ img {
   width: 100%; }
 
 [role="navigation"] {
+  font-family: futura, verdana, sans-serif;
   margin-bottom: 3em;
   text-align: center;
   text-transform: uppercase; }
@@ -1147,7 +1163,7 @@ tito-button button {
   border: 0;
   color: currentcolor;
   cursor: pointer;
-  font-family: futura, verdana, sans-serif;
+  font-family: sans-serif, "Georgia", serif;
   font-size: 1em;
   line-height: 1em;
   margin: 0;
