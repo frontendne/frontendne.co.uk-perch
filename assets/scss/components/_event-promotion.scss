@@ -35,6 +35,7 @@
 }
 
 .event-promotion__buttons {
+    font-family: $heading-font;
 
     @include breakpoint(small) {
         display: flex;

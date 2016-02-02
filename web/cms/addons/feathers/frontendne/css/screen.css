@@ -436,7 +436,7 @@ textarea {
   border-radius: 0;
   color: #4c5c7e;
   display: block;
-  font-family: futura, verdana, sans-serif;
+  font-family: sans-serif, "Georgia", serif;
   font-size: 1em;
   font-weight: 400;
   line-height: 1em;
@@ -456,6 +456,7 @@ textarea {
     outline: none; }
 
 [type="submit"] {
+  font-family: futura, verdana, sans-serif;
   margin-top: 1em; }
 
 label {
@@ -464,8 +465,7 @@ label {
   margin-top: 1em; }
 
 form {
-  margin-bottom: 2em;
-  margin-top: 2em; }
+  margin-bottom: 2em; }
   form small {
     display: block;
     font-style: italic;
@@ -626,23 +626,24 @@ img {
     text-align: center;
     width: 2em; }
 
-@media (min-width: 28em) {
-  .event-promotion__buttons {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex; } }
-
-.event-promotion__buttons [type=submit], .event-promotion__buttons
-.button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
-  margin: 0.61803em 0; }
+.event-promotion__buttons {
+  font-family: futura, verdana, sans-serif; }
   @media (min-width: 28em) {
-    .event-promotion__buttons [type=submit], .event-promotion__buttons
-    .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
-      margin: 0.61803em; } }
+    .event-promotion__buttons {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; } }
+  .event-promotion__buttons [type=submit], .event-promotion__buttons
+  .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
+    margin: 0.61803em 0; }
+    @media (min-width: 28em) {
+      .event-promotion__buttons [type=submit], .event-promotion__buttons
+      .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
+        margin: 0.61803em; } }
 
 [class*='mailing-list__sign-up'] {
-  min-height: 14em;
+  min-height: 16em;
   overflow: hidden;
   position: relative; }
 
@@ -701,6 +702,9 @@ img {
   text-align: center; }
   .main__header a:not(.button) {
     color: currentColor; }
+  .main__header time,
+  .main__header .location {
+    font-family: futura, verdana, sans-serif; }
 
 .main__header--compact {
   min-height: 0;
@@ -1163,7 +1167,7 @@ tito-button button {
   border: 0;
   color: currentcolor;
   cursor: pointer;
-  font-family: sans-serif, "Georgia", serif;
+  font-family: futura, verdana, sans-serif;
   font-size: 1em;
   line-height: 1em;
   margin: 0;

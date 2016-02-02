@@ -7,7 +7,7 @@
     border-radius: 0;
     color: $color__black;
     display: block;
-    font-family: $primary-font;
+    font-family: $secondary-font;
     font-size: 1em;
     font-weight: 400;
     line-height: 1em;
@@ -32,6 +32,7 @@ textarea {
 }
 
 [type="submit"] {
+    font-family: $heading-font;
     margin-top: 1em;
 }
 
@@ -43,7 +44,6 @@ label {
 
 form {
     margin-bottom: 2em;
-    margin-top: 2em;
 
     small {
         display: block;
