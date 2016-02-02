@@ -1,6 +1,7 @@
 $primary-font : futura, verdana, sans-serif;
+$secondary-font : sans-serif, 'Georgia', serif;
 $heading-font: $primary-font;
-$body-font: $primary-font;
+$body-font: $secondary-font;
 
 $line-height: #{$ratio}em;
 $font-weight: 300;
