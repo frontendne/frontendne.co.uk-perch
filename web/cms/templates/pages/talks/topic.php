@@ -21,6 +21,9 @@
     perch_collection('Talks', [
       'category' => 'topic/'.perch_get('cat'),
       'template' => 'topic_listing.html',
+      'filter'   => 'status',
+      'match'    => 'eq',
+      'value'    => 'published'
     ]);
   } else {
     perch_categories(array(
