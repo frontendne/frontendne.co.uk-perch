@@ -55,3 +55,23 @@ form {
 textarea {
     min-height: 8em;
 }
+
+select {
+    @extend %input;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    @media screen and (min-width:0\0) { // target IE9 and IE10
+
+        select {
+            background: none;
+            padding: 5px;
+        }
+    }
+}
+
+select::-ms-expand { // for IE 11
+    display: none;
+}
