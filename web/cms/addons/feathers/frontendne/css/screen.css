@@ -16,14 +16,12 @@ h4,
 h5,
 h6,
 p,
-blockquote,
 pre,
 a,
 abbr,
 acronym,
 address,
 big,
-cite,
 code,
 del,
 dfn,
@@ -396,6 +394,16 @@ html {
     font-size: 1.28571em;
     line-height: 1.61803em; } }
 
+blockquote {
+  background-color: rgba(76, 92, 126, 0.1);
+  border-left: 0.4em solid #4c5c7e;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
+  padding: .2em .7em; }
+
+cite {
+  display: block; }
+
 * {
   box-sizing: border-box; }
 
@@ -426,7 +434,7 @@ body {
 
 [type=email],
 [type=text],
-textarea {
+textarea, select {
   -webkit-appearance: none;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -451,7 +459,7 @@ textarea {
   z-index: 2; }
   [type=email]:focus,
   [type=text]:focus,
-  textarea:focus {
+  textarea:focus, select:focus {
     border-bottom-color: #309cc3;
     outline: none; }
 
@@ -473,6 +481,19 @@ form {
 
 textarea {
   min-height: 8em; }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer; }
+  @media screen and (min-width: 0\0) {
+    select select {
+      background: none;
+      padding: 5px; } }
+
+select::-ms-expand {
+  display: none; }
 
 h1,
 h2,

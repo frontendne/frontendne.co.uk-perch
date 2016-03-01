@@ -32,3 +32,15 @@ body {
         line-height: $line-height;
     }
 }
+
+blockquote {
+    background-color: transparentize($color__black, .9);
+    border-left: .4em solid $color__black;
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    padding: .2em .7em;
+}
+
+cite {
+    display: block;
+}
