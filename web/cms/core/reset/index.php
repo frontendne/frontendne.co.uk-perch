@@ -37,8 +37,15 @@
                     PerchUtil::debug('Username matches');
 
                     if (PerchUtil::post('new_password') == PerchUtil::post('new_password2')) {
-                        $User->set_new_password(PerchUtil::post('new_password'));
-                        $mode = 'password_set';
+
+                        if ($User->password_meets_requirements(PerchUtil::post('new_password'))) {
+                            $User->set_new_password(PerchUtil::post('new_password'));
+                            $mode = 'password_set';
+                        }else{
+                            PerchUtil::debug($User->msg, 'notice');
+                            $error = 'weak_password';
+                        }
+                        
                     }else {
                         $error = 'non_matching_passwords';
                     }
@@ -73,7 +80,11 @@
                 if ($logo) {
                     echo '<img src="'.PerchUtil::html($logo).'" alt="" />';
                 }else{
-                    echo '<img src="'.PERCH_LOGINPATH.'/core/assets/img/logo.png" width="110" alt="Perch" />';
+                    if (PERCH_RUNWAY) {
+                        echo '<img src="'.PERCH_LOGINPATH.'/core/runway/assets/img/logo.png" width="180" alt="Perch Runway" />';
+                    }else{
+                        echo '<img src="'.PERCH_LOGINPATH.'/core/assets/img/logo.png" width="110" alt="Perch" />';
+                    }
                 }
             ?></a>
     </div>
@@ -126,6 +137,10 @@
 
             <?php if ($error && $error=='non_matching_passwords') { ?>
                 <p class="instructions error"><?php echo PerchLang::get('Sorry, your new passwords did not match. Try typing them again.'); ?></p>
+            <?php } ?>
+
+            <?php if ($error && $error=='weak_password') { ?>
+                <p class="instructions error"><?php echo PerchLang::get('Sorry, your new password has been used before or is too simple.'); ?></p>
             <?php } ?>
 
 

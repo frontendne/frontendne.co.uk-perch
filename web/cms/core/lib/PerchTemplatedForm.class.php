@@ -14,6 +14,8 @@ class PerchTemplatedForm
 	private $app               = false;
 	private $method            = false;
 
+    private $counters = array();
+
 	public $form_tag_attributes = false;
 
 	private $content_vars	   = array();
@@ -92,6 +94,8 @@ class PerchTemplatedForm
 	{
 
         $out = $full_match;
+
+        $this->counters = array();
 
         // Form tags
         $out = $this->_replace_form_tags($out, $opening_tag, $closing_tag);
@@ -361,8 +365,8 @@ class PerchTemplatedForm
         }else{
             if ($Tag->placeholder()) {
                 $s = '!'.$Tag->placeholder().'|';
+                array_unshift($opts, $s);
             }
-            array_unshift($opts, $s);
         }
 
         $value    = $attrs['value'];
@@ -410,14 +414,20 @@ class PerchTemplatedForm
     private function _replace_radio_field($match, $Tag, $template)
     {
         $attrs = $this->_copy_standard_attributes($Tag);
-        $opts = explode(',', $Tag->options());
+        $opts = array();
+
+        if ($Tag->options()) $opts = explode(',', $Tag->options());
 
         $value    = $attrs['value'];
         unset($attrs['value']);
-
+        
         $new_tag = '';
 
         $groupID = $attrs['id'];
+
+        if (!isset($this->counters[$groupID])) {
+            $this->counters[$groupID] = 0;
+        }
 
         // wraptags
         $wraptag_open = '';
@@ -439,10 +449,11 @@ class PerchTemplatedForm
         }
 
         if (PerchUtil::count($opts)) {
+
             $i = 1;
             foreach($opts as $opt) {
                 $thisID = $groupID.$i;
-                $val    = $opt;
+                $val    = $value;
                 $text   = $opt;
 
                 if (strpos($opt, '|')) {
@@ -466,7 +477,23 @@ class PerchTemplatedForm
 
                 $i++;
             }
+        }else{
+            $thisID = $groupID.$this->counters[$groupID];
+
+            if ($this->counters[$groupID]==0) {
+                $attrs['checked'] = 'checked';
+            }
+            $attrs['value'] = trim($Tag->value());
+            $attrs['type'] = 'radio';
+            $attrs['id'] = $thisID;
+
+            $new_tag .= $wraptag_open;
+            $new_tag .= PerchXMLTag::create('input', 'single', $attrs);
+            $new_tag .= $wraptag_close;
+
         }
+
+        $this->counters[$groupID]++;
 
         return str_replace($match, $new_tag, $template);
     }

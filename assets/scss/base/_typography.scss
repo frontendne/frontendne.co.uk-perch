@@ -1,6 +1,7 @@
 $primary-font : futura, verdana, sans-serif;
+$secondary-font : sans-serif, 'Georgia', serif;
 $heading-font: $primary-font;
-$body-font: $primary-font;
+$body-font: $secondary-font;
 
 $line-height: #{$ratio}em;
 $font-weight: 300;
@@ -30,4 +31,16 @@ body {
         font-size: 1 / $base-font-size * 18em;
         line-height: $line-height;
     }
+}
+
+blockquote {
+    background-color: transparentize($color__black, .9);
+    border-left: .4em solid $color__black;
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    padding: .2em .7em;
+}
+
+cite {
+    display: block;
 }

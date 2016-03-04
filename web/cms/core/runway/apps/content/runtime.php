@@ -24,6 +24,10 @@
         if (isset($opts['skip-template']) && $opts['skip-template']==true) {
             $return  = true;
             $postpro = false;
+
+            if (isset($opts['return-html']) && $opts['return-html']) {
+                $postpro = true;
+            }
         }else{
             $postpro = true;
         }
@@ -34,8 +38,17 @@
         // Post processing - if there are still <perch:x /> tags
         if ($postpro) {
             if (is_array($out)) {
+
+                // return-html
+                if (isset($out['html'])) {
+                    if (strpos($out['html'], '<perch:')!==false) {
+                        $Template = new PerchTemplate();
+                        $out['html'] = $Template->apply_runtime_post_processing($out['html']);
+                    }
+                }
+
                 // split-items
-                if (PerchUtil::count($out)) {
+                if (PerchUtil::count($out) && !isset($out['html'])) {
                     $Template = new PerchTemplate();
                     foreach($out as &$html_item) {
                         if (strpos($html_item, '<perch:')!==false) {

@@ -42,6 +42,11 @@
 			<?php echo $fCreateUser->label('userPassword', 'Password'); ?>
 			<?php echo $fCreateUser->password('userPassword', $fCreateUser->get(false, 'userPassword'), ''); ?>
 		</div>
+
+		<div class="field <?php echo $fCreateUser->error('userPassword2', false);?>">
+			<?php echo $fCreateUser->label('userPassword2', 'Repeat the password'); ?>
+			<?php echo $fCreateUser->password('userPassword2', $fCreateUser->get(false, 'userPassword2'), ''); ?>
+		</div>
 		
 		<div class="field <?php echo $fCreateUser->error('roleID', false);?>">
 			<?php echo $fCreateUser->label('roleID', 'Role'); ?>

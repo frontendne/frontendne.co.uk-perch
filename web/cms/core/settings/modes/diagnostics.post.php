@@ -123,7 +123,7 @@
 
                 }
 
-
+                if (strpos(PERCH_LICENSE_KEY, 'LOCAL-TESTING')>2) $product .= ' LTM';
 
                 foreach($messages as $message) {
                     echo '<li class="icon '.$message['type'].'">'.$message['text'].'</li>';
@@ -182,11 +182,13 @@
 
                 echo PerchUtil::html((extension_loaded('imagick')? 'Imagick ' : ''));
             ?></li>
+            </li>
             <li>PHP limits: 
                 Max upload <?php echo $max_upload; ?>M, 
                 Max POST <?php echo $max_post; ?>M,
                 Memory: <?php echo $memory_limit; ?>M,
                 Total max file upload: <?php echo $upload_mb; ?>M</li>
+            <li>F1: <?php echo md5(file_get_contents(PerchUtil::file_path(PERCH_CORE.'/lib/PerchAuthenticatedUser.class.php'))); ?>
             <li>Resource folder writeable: <?php echo is_writable(PERCH_RESFILEPATH)?'Yes':'No'; ?></li>
             <?php
                 $constants = $_SERVER;

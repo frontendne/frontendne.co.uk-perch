@@ -144,5 +144,3 @@
 </div>
 <?php
     include('inc/btm.php');
-
-?>

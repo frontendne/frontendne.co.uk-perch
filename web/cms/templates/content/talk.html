@@ -27,12 +27,15 @@
     <ul>
   </perch:before>
     <li>
-      <a href="/topics/<perch:category id="catSlug" />"><perch:category id="catTitle" /></a>
+      <a href="/talks/topic/<perch:category id="catSlug" />"><perch:category id="catTitle" /></a>
     </li>
   <perch:after>
     </ul>
   </perch:after>
 </perch:categories>
+
+<perch:content id="status" type="select" label="Status"
+options="Draft|draft, Published|published" allowempty="false" />
 
 <perch:noresults>
   <h1>404</h1>

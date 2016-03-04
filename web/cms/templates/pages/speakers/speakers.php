@@ -11,6 +11,9 @@
       'template'   => 'speaker_listing.html',
       'sort'       => 'name',
       'sort-order' => 'ASC',
+      'filter'     => 'status',
+      'match'      => 'eq',
+      'value'      => 'published'
   ]);
 
   // Footer

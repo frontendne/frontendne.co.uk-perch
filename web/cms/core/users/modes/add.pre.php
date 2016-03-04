@@ -14,32 +14,39 @@
     $req['userFamilyName'] = "Required";
     $req['userEmail']      = "Required";
     $req['userPassword']   = "Required";
+    $req['userPassword2']   = "Required";
     $req['roleID']         = "Required";
 
 
     $fCreateUser->set_required($req);
 
-    $validation = array();
-    $validation['userUsername']	= array("username", PerchLang::get("Username not available, try another."));
-    $validation['userEmail']	= array("email", PerchLang::get("Email incomplete or already in use."));
+    if ($fCreateUser->posted()) {
 
-    $fCreateUser->set_validation($validation);
+        $username = isset($_POST['userUsername']) ? $_POST['userUsername'] : '';
+        $EmptyUser = new PerchUser(array('userUsername'=>$username, 'userID'=>null));
 
-    if ($fCreateUser->posted() && $fCreateUser->validate()) {
+        $validation = array();
+        $validation['userUsername'] = array("username", PerchLang::get("Username not available, try another."));
+        $validation['userEmail']    = array("email", PerchLang::get("Email incomplete or already in use."));
+        $validation['userPassword'] = array("password", PerchLang::get("Your passwords must match and meet complexity requirements."), array('user'=>&$EmptyUser));
 
-		$data		= array();
-		$postvars 	= array('userUsername', 'userGivenName', 'userFamilyName','userEmail','userPassword','roleID');
-		$data = $fCreateUser->receive($postvars);
-
-        $sendEmail  = false;        
-        if (isset($_POST['sendEmail']) && $_POST['sendEmail']=='1') $sendEmail = true;
-        
-		$Users->create($data, $sendEmail);
-
-		$Alert->set('success', PerchLang::get('User successfully created.'));
-
-		$fCreateUser->clear();
-    }
+        $fCreateUser->set_validation($validation);
 
 
-?>
+        if ($fCreateUser->validate()) {
+
+            $data       = array();
+            $postvars   = array('userUsername', 'userGivenName', 'userFamilyName','userEmail','userPassword','roleID');
+            $data = $fCreateUser->receive($postvars);
+
+            $sendEmail  = false;        
+            if (isset($_POST['sendEmail']) && $_POST['sendEmail']=='1') $sendEmail = true;
+            
+            $Users->create($data, $sendEmail);
+
+            $Alert->set('success', PerchLang::get('User successfully created.'));
+
+            $fCreateUser->clear();
+        }
+
+    } 

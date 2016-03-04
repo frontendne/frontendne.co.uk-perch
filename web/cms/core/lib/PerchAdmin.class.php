@@ -305,8 +305,12 @@ class PerchAdmin extends Perch
 
     private function require_version($app_id, $version)
     {
-        if (version_compare($this->version, $version, '<'))
-            die('App <em>'.$app_id.'</em> requires <strong>Perch '.$version.'</strong> to run. You have Perch '.$this->version.'.');
+        if (version_compare($this->version, $version, '<')) {
+            if (PERCH_RUNWAY) {
+                $version = 'Runway '.$version;
+            }
+            die('App <em>'.$app_id.'</em> requires <strong>Perch '.$version.'</strong> to run. You have '.$this->version.'.'); 
+        }
     }
 
     public function get_settings()

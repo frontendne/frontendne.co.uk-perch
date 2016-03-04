@@ -16,14 +16,12 @@ h4,
 h5,
 h6,
 p,
-blockquote,
 pre,
 a,
 abbr,
 acronym,
 address,
 big,
-cite,
 code,
 del,
 dfn,
@@ -34,7 +32,6 @@ kbd,
 q,
 s,
 samp,
-small,
 strike,
 strong,
 sub,
@@ -378,7 +375,7 @@ animation__bounce-in-down,
 html {
   direction: ltr;
   display: block;
-  font-family: futura, verdana, sans-serif;
+  font-family: sans-serif, "Georgia", serif;
   font-size: 0.85714em;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
@@ -396,6 +393,16 @@ html {
   body {
     font-size: 1.28571em;
     line-height: 1.61803em; } }
+
+blockquote {
+  background-color: rgba(76, 92, 126, 0.1);
+  border-left: 0.4em solid #4c5c7e;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
+  padding: .2em .7em; }
+
+cite {
+  display: block; }
 
 * {
   box-sizing: border-box; }
@@ -426,7 +433,8 @@ body {
   z-index: -99; }
 
 [type=email],
-[type=text] {
+[type=text],
+textarea, select {
   -webkit-appearance: none;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -436,7 +444,7 @@ body {
   border-radius: 0;
   color: #4c5c7e;
   display: block;
-  font-family: futura, verdana, sans-serif;
+  font-family: sans-serif, "Georgia", serif;
   font-size: 1em;
   font-weight: 400;
   line-height: 1em;
@@ -450,15 +458,49 @@ body {
   width: 100%;
   z-index: 2; }
   [type=email]:focus,
-  [type=text]:focus {
+  [type=text]:focus,
+  textarea:focus, select:focus {
     border-bottom-color: #309cc3;
     outline: none; }
 
-label {
-  display: block; }
+[type="submit"] {
+  font-family: futura, verdana, sans-serif;
+  margin-top: 1em; }
 
-h1, h2, h3,
-h4 {
+label {
+  display: block;
+  font-family: futura, verdana, sans-serif;
+  margin-top: 1em; }
+
+form {
+  margin-bottom: 2em; }
+  form small {
+    display: block;
+    font-style: italic;
+    line-height: 1.2; }
+
+textarea {
+  min-height: 8em; }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer; }
+  @media screen and (min-width: 0\0) {
+    select select {
+      background: none;
+      padding: 5px; } }
+
+select::-ms-expand {
+  display: none; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: futura, verdana, sans-serif;
   font-weight: 600;
   line-height: 1em;
@@ -605,23 +647,24 @@ img {
     text-align: center;
     width: 2em; }
 
-@media (min-width: 28em) {
-  .event-promotion__buttons {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex; } }
-
-.event-promotion__buttons [type=submit], .event-promotion__buttons
-.button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
-  margin: 0.61803em 0; }
+.event-promotion__buttons {
+  font-family: futura, verdana, sans-serif; }
   @media (min-width: 28em) {
-    .event-promotion__buttons [type=submit], .event-promotion__buttons
-    .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
-      margin: 0.61803em; } }
+    .event-promotion__buttons {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; } }
+  .event-promotion__buttons [type=submit], .event-promotion__buttons
+  .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
+    margin: 0.61803em 0; }
+    @media (min-width: 28em) {
+      .event-promotion__buttons [type=submit], .event-promotion__buttons
+      .button, .event-promotion__buttons tito-button, .event-promotion__buttons .sold-out {
+        margin: 0.61803em; } }
 
 [class*='mailing-list__sign-up'] {
-  min-height: 14em;
+  min-height: 16em;
   overflow: hidden;
   position: relative; }
 
@@ -680,6 +723,9 @@ img {
   text-align: center; }
   .main__header a:not(.button) {
     color: currentColor; }
+  .main__header time,
+  .main__header .location {
+    font-family: futura, verdana, sans-serif; }
 
 .main__header--compact {
   min-height: 0;
@@ -691,6 +737,7 @@ img {
   width: 100%; }
 
 [role="navigation"] {
+  font-family: futura, verdana, sans-serif;
   margin-bottom: 3em;
   text-align: center;
   text-transform: uppercase; }

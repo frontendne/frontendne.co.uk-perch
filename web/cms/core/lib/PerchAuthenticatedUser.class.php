@@ -31,14 +31,7 @@ class PerchAuthenticatedUser extends PerchBase
                 $password_match  = false;
                 $stored_password = $result['userPassword'];
 
-                // check which type of password - default is portable
-                if (defined('PERCH_NONPORTABLE_HASHES') && PERCH_NONPORTABLE_HASHES) {
-                    $portable_hashes = false;
-                }else{
-                    $portable_hashes = true;
-                }
-
-                $Hasher = new PasswordHash(8, $portable_hashes);
+                $Hasher = PerchUtil::get_password_hasher();
 
 
                 // data array for user details - gets committed if passwords check out.

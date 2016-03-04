@@ -405,6 +405,17 @@ class PerchAPI_SubmittedForm
         }
     }
 
+    public function clear_from_post_env()
+    {
+        if (PerchUtil::count($this->data)) {
+            foreach($this->data as $key=>$val) {
+                if (isset($_POST[$key])) {
+                    unset($_POST[$key]);
+                }
+            }
+        }
+    }
+
     private function _get_template_content()
     {
         if ($this->templateContent === false) {

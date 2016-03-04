@@ -258,6 +258,69 @@ class PerchFieldType_time extends PerchFieldType
 }
 
 
+/* ------------ PERIOD ------------ */
+
+class PerchFieldType_period extends PerchFieldType
+{
+    public function render_inputs($details=array())
+    {
+        $s = '';
+
+        $s .= $this->Form->text($this->Tag->input_id().'_count',
+                                $this->Form->get((isset($details[$this->Tag->input_id()])? $details[$this->Tag->input_id()] : array()), 'count', $this->Tag->default(), $this->Tag->post_prefix()),
+                                's',
+                                $this->Tag->maxlength(),
+                                'number');
+
+        $opts = array(
+                array('label' => PerchLang::get('minutes'), 'value' => 'MINUTES'),
+                array('label' => PerchLang::get('hours'),   'value' => 'HOURS'),
+                array('label' => PerchLang::get('days'),    'value' => 'DAYS'),
+                array('label' => PerchLang::get('weeks'),   'value' => 'WEEKS'),
+                array('label' => PerchLang::get('months'),  'value' => 'MONTHS'),
+                array('label' => PerchLang::get('years'),   'value' => 'YEARS'),
+            );
+
+        $s .= ' ' .$this->Form->select($this->Tag->input_id().'_unit',
+                                $opts,
+                                $this->Form->get((isset($details[$this->Tag->input_id()])? $details[$this->Tag->input_id()] : array()), 'unit', strtoupper($this->Tag->default_unit()), $this->Tag->post_prefix())
+                                );
+
+        return $s;
+    }
+
+    public function get_raw($post=false, $Item=false)
+    {
+        $id = $this->Tag->id();
+
+        if ($post===false) {
+            $post = $_POST;
+        }
+
+        $this->raw_item['_default'] = null;
+
+        if (isset($post[$id.'_count']) && $post[$id.'_count']!='') {
+            $this->raw_item['count'] = $post[$id.'_count'];
+            $this->raw_item['_default'] = '+'.$this->raw_item['count'].' ';
+
+            if (isset($post[$id.'_unit'])) {
+                $this->raw_item['unit'] = $post[$id.'_unit'];
+                $this->raw_item['_default'] .= $this->raw_item['unit'];
+            }
+
+        }
+
+        return $this->raw_item;
+    }
+
+    public function get_search_text($raw=false)
+    {
+        if ($raw===false) $raw = $this->get_raw();
+
+        return $raw['_default'];
+    }
+}
+
 /* ------------ SLUG ------------ */
 
 class PerchFieldType_slug extends PerchFieldType

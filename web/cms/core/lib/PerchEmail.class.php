@@ -29,15 +29,17 @@ class PerchEmail
     private $html = false;
 
     private $template_method = 'dollar';
+    private $template_ns     = 'email';
 
     public $errors = '';
 
-    function __construct($template)
+    function __construct($template, $namespace='email')
     {
-        $this->template = $template;
+        $this->template    = $template;
+        $this->template_ns = $namespace;
 
         if ($template) {
-            $this->set_template($template);
+            $this->set_template($template, $namespace);
         }
 
         $this->set('http_host', $_SERVER['HTTP_HOST']);
@@ -53,9 +55,10 @@ class PerchEmail
         if (!defined('PERCH_EMAIL_PASSWORD'))   define('PERCH_EMAIL_PASSWORD', "not configured");
     }
 
-    public function set_template($template)
+    public function set_template($template, $namespace='email')
     {
-        $this->template = $template;
+        $this->template    = $template;
+        $this->template_ns = $namespace;
 
         $type = PerchUtil::file_extension($template);
 
@@ -75,8 +78,8 @@ class PerchEmail
             $local_file = false;
         }
 
-        $user_file  = PerchUtil::file_path(PERCH_TEMPLATE_PATH.'/'.$template);
-        $core_file  = PerchUtil::file_path(PERCH_CORE . '/emails/'.$template);
+        $user_file     = PerchUtil::file_path(PERCH_TEMPLATE_PATH.'/'.$template);
+        $core_file     = PerchUtil::file_path(PERCH_CORE . '/emails/'.$template);
 
         if (file_exists($user_file)) {
             $this->template_path = $user_file;
@@ -87,6 +90,20 @@ class PerchEmail
         }
 
         PerchUtil::debug('Using email template: '.$this->template_path.' ('.$type.')', 'template');
+
+        // detect type
+        if (file_exists($this->template_path)) {
+            $template_contents = file_get_contents($this->template_path);
+        }else{
+            $template_contents = '';
+        }
+        
+
+        if (strpos($template_contents, '<perch:')!==false) {
+            $this->template_method('perch');
+        }else{
+            $this->template_method('dollar');
+        }
 
     }
 
@@ -167,7 +184,7 @@ class PerchEmail
     public function set($key, $str=false)
     {
         if ($str === false) {
-            return $this->vars[$key];
+            return (isset($this->vars[$key]) ? $this->vars[$key] : false);
         }
 
         $this->vars[$key] = $str;
@@ -204,48 +221,67 @@ class PerchEmail
 
     public function send()
     {
+        $LogMessage = new PerchSystemEventSubject;
+        $LogMessage->recipients = array();
+        $LogMessage->attachments = array();
+
         $body = $this->build_message();
+        $LogMessage->body = $body;
 
         $debug_recipients = array();
 
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
+        $LogMessage->charset = 'utf-8';
 
         if ($this->html) {
             $mail->IsHTML();
             $mail->AltBody = $this->plain_textify($body);
+
+            $LogMessage->is_html = true;
+            $LogMessage->altbody = $mail->AltBody;
+        }else{
+            $LogMessage->is_html = false;
         }
 
         try {
             if ($this->replyToEmail()) {
                 $mail->AddReplyTo($this->replyToEmail(), $this->replyToName());
+                $LogMessage->reply_to = array('email' => $this->replyToEmail(), 'name' => $this->replyToName());
             }
 
             $mail->SetFrom($this->senderEmail(), $this->senderName());
+
+            $LogMessage->from = array('email' => $this->senderEmail(), 'name' => $this->senderName());
 
             if (is_array($this->recipientEmail)) {
                 foreach($this->recipientEmail as $recipient) {
                     $mail->AddAddress($recipient);
                     $debug_recipients[] = $recipient;
+                    $LogMessage->recipients[] = $recipient;
                 }
             }else{
                $mail->AddAddress($this->recipientEmail(), $this->recipientName());
                $debug_recipients[] = $this->recipientEmail();
+               $LogMessage->recipients[] = $this->recipientEmail();
             }
 
             $mail->Subject = $this->subject();
+            $LogMessage->subject = $this->subject();
 
             $mail->Body = $body;
 
             if (PerchUtil::count($this->files)) {
                 foreach($this->files as $file) {
                     $mail->AddAttachment($file['path'], $file['name']); // attachment
+                    $LogMessage->attachments[] = $file;
                 }
             }
 
             switch(strtolower(PERCH_EMAIL_METHOD)) {
                 case 'sendmail':
                     $mail->IsSendmail();
+                    $LogMessage->sent_by = 'sendmail';
                     break;
 
                 case 'smtp':
@@ -258,6 +294,14 @@ class PerchEmail
                     $mail->Password   = PERCH_EMAIL_PASSWORD;
                     $mail->SMTPSecure = PERCH_EMAIL_SECURE;
 
+                    $LogMessage->sent_by = 'smtp';
+
+                    $LogMessage->smtp_host     = PERCH_EMAIL_HOST;
+                    $LogMessage->smtp_auth     = PERCH_EMAIL_AUTH;
+                    $LogMessage->smtp_port     = PERCH_EMAIL_PORT;
+                    $LogMessage->smtp_username = PERCH_EMAIL_USERNAME;
+                    $LogMessage->smtp_password = PERCH_EMAIL_PASSWORD;
+                    $LogMessage->smtp_secure   = PERCH_EMAIL_SECURE;
 
                     break;
             }
@@ -267,6 +311,9 @@ class PerchEmail
                 return false;
             }else{
                 PerchUtil::debug('Sent email: "'.$this->subject().'" to '.implode(', ', $debug_recipients), 'success');
+
+                $Perch = Perch::fetch();
+                $Perch->event('email.send', $LogMessage);
                 return true;
             }
 
@@ -287,16 +334,27 @@ class PerchEmail
     private function build_message()
     {
         if ($this->template_method=='perch') {
+            PerchUtil::debug('Building message with Perch template');
             return $this->build_message_with_perch();
         }
 
+        PerchUtil::debug('Building message with Dollar template');
         return $this->build_message_with_dollar();
     }
 
     private function build_message_with_perch()
     {
-        $Template = new PerchTemplate($this->template, 'email');
-        $html = $Template->render($this->vars);
+        if (isset($this->app_id)) {
+            $API = new PerchAPI($this->version, $this->app_id);
+            $Template = $API->get('Template');
+            $Template->set($this->template, $this->template_ns);
+        }else{
+            $Template = new PerchTemplate($this->template, 'email');    
+        }
+        
+        $html = $Template->render_group(array($this->vars), true);
+        $html = $Template->apply_runtime_post_processing($html);
+        $this->subject($this->find_subject_from_html($html));
         return $html;
     }
 
@@ -336,12 +394,7 @@ class PerchEmail
             $this->template_data    = '';
 
             if ($this->html) {
-                $s = '/<title>(.*?)<\/title>/';
-                if (preg_match($s, $contents, $matches)) {
-                    if (isset($matches[1])) {
-                        $this->subject($matches[1]);
-                    }
-                }
+                $this->subject($this->find_subject_from_html($contents));
             }
 
             return stripslashes($contents);
@@ -349,6 +402,17 @@ class PerchEmail
             PerchUtil::debug('Template does not exist: '. $template, 'error');
             return false;
         }
+    }
+
+    private function find_subject_from_html($contents)
+    {
+        $s = '/<title>(.*?)<\/title>/';
+        if (preg_match($s, $contents, $matches)) {
+            if (isset($matches[1])) {
+                return $matches[1];
+            }
+        }
+        return false;
     }
 
     private function substitute_vars($matches)

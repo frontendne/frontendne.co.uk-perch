@@ -47,14 +47,7 @@ class PerchUsers extends PerchFactory
     public function create($data, $send_welcome_email=true)
     {
 
-        // check which type of password - default is portable
-        if (defined('PERCH_NONPORTABLE_HASHES') && PERCH_NONPORTABLE_HASHES) {
-            $portable_hashes = false;
-        }else{
-            $portable_hashes = true;
-        }
-
-        $Hasher = new PasswordHash(8, $portable_hashes);
+        $Hasher = PerchUtil::get_password_hasher();
 
         $clear_pwd  = $data['userPassword'];
         $data['userPassword'] = $Hasher->HashPassword($clear_pwd);

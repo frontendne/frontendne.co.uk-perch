@@ -6,22 +6,25 @@
     text-transform: uppercase;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     @extend %hn;
+}
 
+h1 {
     font-size: pow($ratio, 1) + em;
 }
 
 h2 {
-    @extend %hn;
-
     font-size: ($ratio--inv / 2) + 1em;
     margin-bottom: #{$ratio--inv}em;
 }
 
 h3,
 h4 {
-    @extend %hn;
-
     font-size: ($ratio--inv / 3) + 1em;
 }

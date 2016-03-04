@@ -8,6 +8,8 @@ class PerchUtil
 	{
 		if (is_array($a)){
 			return count($a);
+		}elseif($a instanceof SplFixedArray){
+			return count($a);
 		}else{
 			return 0;
 		}
@@ -35,30 +37,31 @@ class PerchUtil
 			);
 	}
 
-	static function get_caller_info() {
-	    $c = '';
-	    $file = '';
-	    $func = '';
-	    $class = '';
-	    $trace = debug_backtrace();
+	static function get_caller_info() 
+	{
+		$c     = '';
+		$file  = '';
+		$func  = '';
+		$class = '';
+		$trace = debug_backtrace();
 	    if (isset($trace[2])) {
 	        $file = $trace[1]['file'];
 	        $func = $trace[2]['function'];
 	        if ((substr($func, 0, 7) == 'include') || (substr($func, 0, 7) == 'require')) {
 	            $func = '';
 	        }
-	    } else if (isset($trace[1])) {
+	    } elseif (isset($trace[1])) {
 	        $file = $trace[1]['file'];
 	        $func = '';
 	    }
 	    if (isset($trace[3]['class'])) {
-	        $class = $trace[3]['class'];
-	        $func = $trace[3]['function'];
-	        $file = $trace[2]['file'];
-	    } else if (isset($trace[2]['class'])) {
-	        $class = $trace[2]['class'];
-	        $func = $trace[2]['function'];
-	        $file = $trace[1]['file'];
+			$class = $trace[3]['class'];
+			$func  = $trace[3]['function'];
+			$file  = $trace[2]['file'];
+	    } elseif (isset($trace[2]['class'])) {
+			$class = $trace[2]['class'];
+			$func  = $trace[2]['function'];
+			$file  = $trace[1]['file'];
 	    }
 	    if ($file != '') $file = basename($file);
 	    $c = $file . ": ";
@@ -103,7 +106,14 @@ class PerchUtil
 
 		    		$out .= '<tr>';
 		    		if ($dev) $out .= 	'<td>'.round($msg['time'] - $time, 4).'</td>';
-		    		if ($dev) $out .= 	'<td>'.round($msg['time'] - $prev_time, 4).'</td>';
+		    		#if ($dev) $out .= 	'<td>'.round($msg['time'] - $prev_time, 4).'</td>';
+			    	if ($dev) {
+		    			$diff = round($msg['time'] - $prev_time, 4);
+		    			$class = '';
+		    			if ($diff>0.01) $class="perf-warn";
+		    			if ($diff>0.5)  $class="perf-bad";
+		    			$out .= 	'<td class="'.$class.'">'.$diff.'</td>';
+		    		}
 		    		$out .= 	'<td class="'.$msg['type'].'" title="'.$msg['caller'].'">'.$msg['msg'].'</td>';
 		    		#$out .= 	'<script>console.log(\''.str_replace(PHP_EOL, " \\", addslashes($msg['msg'])).'\');</script>';
 		    		$out .= '</tr>';
@@ -1187,7 +1197,7 @@ class PerchUtil
 		if ($min_version===false) $min_version = PERCH_PRODUCTION;
 
 		if (PERCH_PRODUCTION_MODE < $min_version && function_exists('opcache_invalidate')) {
-			PerchUtil::debug('Invalidating opcache: '.$path);
+			#PerchUtil::debug('Invalidating opcache: '.$path);
 			clearstatcache(true, $path);
 			return opcache_invalidate($path, true);
 		}
@@ -1212,6 +1222,17 @@ class PerchUtil
 		}
 
 		return false;	
+	}
+
+	public static function get_password_hasher()
+	{
+		if (defined('PERCH_NONPORTABLE_HASHES') && PERCH_NONPORTABLE_HASHES) {
+            $portable_hashes = false;
+        }else{
+            $portable_hashes = true;
+        }
+        
+        return new PasswordHash(8, $portable_hashes);
 	}
 
 }

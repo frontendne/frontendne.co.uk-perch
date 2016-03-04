@@ -129,6 +129,11 @@ class PerchForm
 	            if ($class) return ' class="error"';
 	            return ' error';
 	        }
+
+	        if (isset($this->messages[$id])) {
+	        	if ($class) return ' class="error"';
+	            return ' error';
+	        }
 	    }
 
 	    return '';
@@ -227,19 +232,33 @@ class PerchForm
 
 	private function check_password($id, $args)
 	{
-
 		$str 	= $_POST[$id];
 		$str2	= $_POST[$id.'2'];
 
 		if ($str != $str2){
 			return false;
 		}
+
+		if (isset($args['user'])) {
+		    $User = $args['user'];
+		    if (is_object($User)) {
+		    	if (!$User->password_meets_requirements($str)) {
+		    		return false;
+		    	}
+		    }
+		}
+
 		return true;
 	}
 
 	private function check_license_key($id, $args)
 	{
 		$str 	= $_POST[$id];
+
+		// LTM?
+		if (strpos($str, 'LOCAL-TESTING')>2) {
+			return true;
+		}
 
 		$pattern = '#^(P|R)[0-9]{5}(-[A-Z]{3}[0-9]{3}){4}$#';
 
