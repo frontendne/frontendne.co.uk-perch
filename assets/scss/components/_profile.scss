@@ -3,6 +3,10 @@
     ul {
         @include remove-list-marker;
     }
+
+    li {
+        clear: both;
+    }
 }
 
 .avatar {
