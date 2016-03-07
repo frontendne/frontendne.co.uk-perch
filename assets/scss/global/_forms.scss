@@ -7,7 +7,7 @@
     border-radius: 0;
     color: $color__black;
     display: block;
-    font-family: $primary-font;
+    font-family: $secondary-font;
     font-size: 1em;
     font-weight: 400;
     line-height: 1em;
@@ -26,10 +26,52 @@
 }
 
 [type=email],
-[type=text] {
+[type=text],
+textarea {
     @extend %input;
+}
+
+[type="submit"] {
+    font-family: $heading-font;
+    margin-top: 1em;
 }
 
 label {
     display: block;
+    font-family: $heading-font;
+    margin-top: 1em;
+}
+
+form {
+    margin-bottom: 2em;
+
+    small {
+        display: block;
+        font-style: italic;
+        line-height: 1.2;
+    }
+}
+
+textarea {
+    min-height: 8em;
+}
+
+select {
+    @extend %input;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    @media screen and (min-width:0\0) { // target IE9 and IE10
+
+        select {
+            background: none;
+            padding: 5px;
+        }
+    }
+}
+
+select::-ms-expand { // for IE 11
+    display: none;
 }

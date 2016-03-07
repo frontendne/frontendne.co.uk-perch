@@ -11,6 +11,11 @@
     a:not(.button) {
         color: currentColor;
     }
+
+    time,
+    .location {
+        font-family: $heading-font;
+    }
 }
 
 .main__header--compact {
