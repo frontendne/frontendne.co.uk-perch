@@ -763,6 +763,9 @@ img {
   padding-left: 0;
   list-style-type: none; }
 
+.profile li {
+  clear: both; }
+
 .avatar {
   width: 47.36842%;
   float: right;
