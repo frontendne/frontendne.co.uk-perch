@@ -33,3 +33,25 @@
     </div>
 
 </section>
+
+
+<perch:noresults>
+  <section class="event-promotion">
+    <section class="event-promotion" datetime="<perch:content id="nextEvent" type="date" time="true" format="%Y-%m-%d 18:00" />">
+
+        <span>Our next event&hellip;</span>
+
+        <h1><perch:content id="nextMonth" type="text" label="Title" required="true" title="true" order="1" /> event</h1>
+
+        <time class="date" data-day="<perch:content id="nextEvent" type="date" time="true" format="%d" />"><perch:template path="includes/svg/date.svg" /><perch:content id="nextEvent" type="date" time="true" format="%-d %B" /></time>
+
+        <time class="time"><perch:template path="includes/svg/time.svg" />18:00</time>
+
+        <a href="#map" class="location"><perch:template path="includes/svg/location.svg" />The Bunker</a>
+    </section>
+
+    <p>Event will be announced shortly.</p>
+
+    <a href="#mailing-list" class="button"> Join our mailing list for more details.</a>
+  </section>
+</perch:noresults>

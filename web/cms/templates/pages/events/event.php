@@ -7,12 +7,25 @@
 
     PerchSystem::set_vars(array('todaysDate'=>date('U')));
 
+
+                $filters = array(
+            array(
+              'filter'     => 'slug',
+              'match'      => 'eq',
+              'value'    => perch_get('s'),
+            ),
+            array(
+              'filter'     => 'eventDisplayDate',
+              'match'      => 'lte',
+              'value'      => date('Y-m-d H:i:s')
+            ),
+        );
+
+
   // Page content
   perch_collection('Events', [
     'template' => 'event.html',
-    'filter'   => 'slug',
-    'match'    => 'eq',
-    'value'    => perch_get('s'),
+    'filter'   => $filters,
     'count'    => 1,
   ]);
 
