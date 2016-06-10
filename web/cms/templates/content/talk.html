@@ -1,4 +1,11 @@
+<section class="talk-details-header">
 <h1><perch:content id="title" type="text" label="Title" required="true" order="1" title="true" /></h1>
+  <perch:related id="event" collection="Events" label="Event" order="4">
+    <p>
+      <perch:related id="speaker" collection="Speakers" label="Speaker" order="4"><perch:content id="name" /></perch:related>, <perch:content id="date" type="date" time="true" format="d/m/y" />
+    </p>
+  </perch:related>
+</select>
 
 <perch:content id="introduction" type="textarea" label="Introduction" count="chars" order="2" chars="200" append="…" size="xs" help="Keep this short! (max 200 characters)" />
 
