@@ -652,7 +652,6 @@ img {
   @media (min-width: 28em) {
     .event-promotion__buttons {
       display: -webkit-box;
-      display: -webkit-flex;
       display: -ms-flexbox;
       display: flex; } }
   .event-promotion__buttons [type=submit], .event-promotion__buttons
@@ -708,13 +707,11 @@ img {
 
 .main__header {
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
   background-color: #4c5c7e;
   color: #f2eadf;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1.61803em;
@@ -780,7 +777,6 @@ img {
 .leaflet-container {
   background: #fff;
   color: rgba(0, 0, 0, 0.75);
-  cursor: -webkit-grab;
   cursor: grab;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   outline: 0;
@@ -1173,11 +1169,17 @@ img {
 .leaflet-oldie .mapbox-modal.active .mapbox-modal-content {
   display: block; }
 
+.talk-details-header h1 {
+  margin-bottom: 0; }
+
+.talk-details-header p {
+  font-weight: bold;
+  font-style: italic; }
+
 .tito-box {
   background-color: #4c5c7e;
   color: #f2eadf;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin: 1.61803em 0 0;
