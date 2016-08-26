@@ -407,7 +407,7 @@
 .map-tooltip.closable .close,
 .leaflet-control-layers-toggle,
 .leaflet-popup-close-button,
-.mapbox-button-icon:before {
+.mapbox-button-icon::before {
     background-repeat: no-repeat;
     content: '';
     display: inline-block;
@@ -509,4 +509,3 @@
     display: block;
 }
 // scss-lint:enable ColorVariable
-

@@ -3,7 +3,7 @@
 // eg, pow(3, 2) => 3^2 = 9
 
 @function pow($int, $exp) {
-    $answer : $int;
+    $answer: $int;
 
     @if $exp < 1 {
         @return 0;
@@ -14,7 +14,7 @@
     }
 
     @for $i from 2 through $exp {
-        $answer : $answer * $int;
+        $answer: $answer * $int;
     }
 
     @return $answer;

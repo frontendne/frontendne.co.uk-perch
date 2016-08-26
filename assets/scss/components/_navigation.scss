@@ -25,11 +25,11 @@
     li {
         display: inline-block;
 
-        &:before {
+        &::before {
             content: '/';
         }
 
-        &:first-child:before {
+        &:first-child::before {
             content: '';
             position: absolute; // Removes from document flow
         }
