@@ -23,7 +23,7 @@
 .date {
     position: relative;
 
-    &:after {
+    &::after {
         bottom: 0;
         content: attr(data-day);
         font-size: .5em;
