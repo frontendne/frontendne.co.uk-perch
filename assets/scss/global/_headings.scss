@@ -17,10 +17,12 @@ h6 {
 
 h1 {
     font-size: pow($ratio, 1) + em;
+    line-height: pow($ratio, 1) + em;
 }
 
 h2 {
     font-size: ($ratio--inv / 2) + 1em;
+    line-height: ($ratio--inv / 2) + 1.25em;
     margin-bottom: #{$ratio--inv}em;
 }
 
