@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-
+Sitemap: https://frontendne.co.uk/sitemap.xml
