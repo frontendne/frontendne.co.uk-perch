@@ -1,11 +1,11 @@
-<section class="talk-details-header">
+<header class="talk-details-header">
 <h1><perch:content id="title" type="text" label="Title" required="true" order="1" title="true" /></h1>
   <perch:related id="event" collection="Events" label="Event" order="4">
     <p>
       <perch:related id="speaker" collection="Speakers" label="Speaker" order="4"><a href="/speakers/<perch:content id="slug" type="slug" for="name" />"><perch:content id="name" /></a><perch:if exists="perch_item_last">, <perch:else /><perch:if id="perch_item_rev_index" value="2" match="gt">, <perch:else /> and </perch:if></perch:if></perch:related> <perch:content id="date" type="date" time="true" format="d/m/y" />
     </p>
   </perch:related>
-</select>
+</header>
 
 <p><perch:content id="introduction" type="textarea" label="Introduction" count="chars" order="2" size="xs" help="Keep this short! (max 200 characters)" /></p>
 
