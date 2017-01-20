@@ -3,35 +3,34 @@
 <perch:content id="ticketSalesDate" type="date" time="true" format="%s" label="Ticket Date" required="true" order="2" suppress="true" />
 <perch:content id="titoCode" type="text" label="Tito Code (no Url)" order="3" suppress="true" />
 
-<div datetime="<perch:content id="date" type="date" time="true" format="%Y-%m-%d 18:00" />">
+    <div datetime="<perch:content id="date" type="date" time="true" format="%Y-%m-%d 18:00" />">
 
-    <h1><perch:content id="title" type="text" label="Title" required="true" title="true" order="1" /></h1>
+        <h1><perch:content id="title" type="text" label="Title" required="true" title="true" order="1" /></h1>
 
-    <time class="date" data-day="<perch:content id="date" type="date" time="true" format="%d" />"><perch:template path="includes/svg/date.svg" /><perch:content id="date" type="date" time="true" format="%-d %B" /></time>
+        <time class="date" data-day="<perch:content id="date" type="date" time="true" format="%d" />"><perch:template path="includes/svg/date.svg" /><perch:content id="date" type="date" time="true" format="%-d %B" /></time>
 
-    <time class="time"><perch:template path="includes/svg/time.svg" />18:00</time>
+        <time class="time"><perch:template path="includes/svg/time.svg" />18:00</time>
 
-    <a href="#map" class="location"><perch:template path="includes/svg/location.svg" />Mining Institute</a>
+        <a href="#map" class="location"><perch:template path="includes/svg/location.svg" />Mining Institute</a>
 
-    <perch:if id="date" match="gte" value="{todaysDate}" format="%s">
-        <perch:if  id="ticketSalesDate" match="lte" value="{todaysDate}" format="%s">
-            <div class="event-promotion__buttons">
-                <tito-button event="frontendne/<perch:content id="titoCode" />">Get a ticket</tito-button>
-            </div>
-         </perch:if>
-    </perch:if>
+        <perch:if id="date" match="gte" value="{todaysDate}" format="%s">
+            <perch:if  id="ticketSalesDate" match="lte" value="{todaysDate}" format="%s">
+                <div class="event-promotion__buttons">
+                    <tito-button event="frontendne/<perch:content id="titoCode" />">Get a ticket</tito-button>
+                </div>
+             </perch:if>
+        </perch:if>
 
-</div>
-
-
+    </div>
 
     <perch:content id="introduction" type="textarea" suppress="true" label="Introduction" count="chars" chars="200" append="…" size="xs" help="Short version for home page (max 200 characters)" />
 
     <perch:content id="details" type="textarea" label="Details" markdown="true" />
 
-    <div class="event-promotion__buttons">
+    <h2>Tickets</h2>
 
-    </div>
+    <p>Tickets are up for grabs here <strong>11:00 on the <perch:content id="ticketSalesDate" type="date" time="true" format="jS \of F" /></strong>. Make sure you're <a href="#mailing-list">on the mailing list</a> and you'll get a reminder email on the morning of the <perch:content id="ticketSalesDate" type="date" time="true" format="jS" />.</p>
+
 </div>
 
     <perch:if id="date" match="gte" value="{todaysDate}" format="%s">
