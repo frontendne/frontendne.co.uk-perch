@@ -2,44 +2,60 @@
 <h1><perch:content id="title" type="text" label="Title" required="true" order="1" title="true" /></h1>
   <perch:related id="event" collection="Events" label="Event" order="4">
     <p>
-      <perch:related id="speaker" collection="Speakers" label="Speaker" order="4">
-      <perch:content id="name" /><perch:if exists="perch_item_last">, <perch:else />, </perch:if></perch:related> <perch:content id="date" type="date" time="true" format="d/m/y" />
+      <perch:related id="speaker" collection="Speakers" label="Speaker" order="4"><a href="/speakers/<perch:content id="slug" type="slug" for="name" />"><perch:content id="name" /></a><perch:if exists="perch_item_last">, <perch:else /><perch:if id="perch_item_rev_index" value="2" match="gt">, <perch:else /> and </perch:if></perch:if></perch:related> <perch:content id="date" type="date" time="true" format="d/m/y" />
     </p>
   </perch:related>
 </header>
 
 <p><perch:content id="introduction" type="textarea" label="Introduction" count="chars" order="2" size="xs" help="Keep this short! (max 200 characters)" /></p>
 
-<h2>Video</h2>
-<perch:content id="video" divider-before="Media embed code" type="textarea" order="5" size="xs" label="Wistia link" html="true" help="Embed code from the 'Inline embed' tab" />
-
-<h2>Slides</h2>
-<perch:content id="slides" type="textarea" size="xs" label="Slideshare link" order="6" html="true" help="Embed code from 'The beginning of the Presentation'" />
+<perch:if exists="video">
+    <perch:content id="video" divider-before="Media embed code" type="textarea" order="5" size="xs" label="Video embed code" html="true" />
+</perch:if>
 
 <perch:if exists="summary">
-  <h2>Summary</h2>
+    <perch:content id="summary" type="textarea" label="Summary/transcription" order="3" markdown="true" />
 </perch:if>
-<perch:content id="summary" type="textarea" label="Summary/transcription" order="3" markdown="true" />
+
+<perch:if exists="slides">
+    <h2>Slides</h2>
+    <perch:content id="slides" type="textarea" size="xs" label="Slides embed code" order="6" html="true" />
+</perch:if>
 
 <perch:content id="slug" label="Talk URL" type="slug" for="title" suppress="true" />
 
 <perch:related id="speaker" collection="Speakers" label="Speaker" order="4">
-  <div>
-    <a href="/speakers/<perch:content id="slug" type="slug" />">Find out more about <perch:content id="name" /></a> ›
-  </div>
+    <perch:before>
+        <perch:if id="perch_item_rev_index" value="1" match="gt">
+            <h2>Speakers</h2>
+        <perch:else />
+            <h2>Speaker</h2>
+        </perch:if>
+        <ul>
+    </perch:before>
+        <li>
+            <a href="/speakers/<perch:content id="slug" type="slug" />">Find out more about <perch:content id="name" /></a> ›
+        </li>
+    <perch:after>
+        </ul>
+    </perch:after>
 </perch:related>
 
 <perch:categories id="topic" label="Topics" set="topic" required="true" order="7" display-as="checkboxes">
-  <perch:before>
-    <h2>Topics covered</h2>
-    <ul>
-  </perch:before>
-    <li>
-      <a href="/talks/topic/<perch:category id="catSlug" />"><perch:category id="catTitle" /></a>
-    </li>
-  <perch:after>
-    </ul>
-  </perch:after>
+    <perch:before>
+        <perch:if id="perch_item_rev_index" value="1" match="gt">
+            <h2>Topics covered</h2>
+        <perch:else />
+            <h2>Topic covered</h2>
+        </perch:if>
+        <ul>
+    </perch:before>
+        <li>
+            <a href="/talks/topic/<perch:category id="catSlug" />"><perch:category id="catTitle" /></a>
+        </li>
+    <perch:after>
+        </ul>
+    </perch:after>
 </perch:categories>
 
 <perch:content id="status" type="select" label="Status"

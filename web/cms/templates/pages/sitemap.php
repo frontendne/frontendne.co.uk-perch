@@ -10,13 +10,35 @@
     'hide-default-doc' => true,
     'hide-extensions'  => true,
     'levels'           => 2,
-    // 'include-hidden'   => true,
     'use-attributes'   => false,
     'flat'             => true,
   ));
 
   perch_collection('Events', [
-    'template' => 'sitemap/events.html',
+    'template'   => 'sitemap/events.html',
+    'sort'       => 'date',
+    'sort-order' => 'DESC',
+    'filter'     => 'date',
+    'match'      => 'lte',
+    'value'      => date('Y-m-d'),
+  ]);
+
+  perch_collection('Speakers', [
+    'template'   => 'sitemap/speakers.html',
+    'sort'       => 'name',
+    'sort-order' => 'ASC',
+    'filter'     => 'status',
+    'match'      => 'eq',
+    'value'      => 'published'
+  ]);
+
+  perch_collection('Talks', [
+    'template'   => 'sitemap/talks.html',
+    'sort'       => 'title',
+    'sort-order' => 'ASC',
+    'filter'     => 'status',
+    'match'      => 'eq',
+    'value'      => 'published'
   ]);
 
   echo '</urlset>';
