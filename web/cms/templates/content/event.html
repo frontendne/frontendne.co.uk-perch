@@ -1,9 +1,9 @@
-<perch:content id="date" type="date" time="true" label="Event date" required="true" order="2" suppress="true" />
-<perch:content id="eventDisplayDate" type="date" time="true" format="%s" label="Announcement Date" required="true" order="2" suppress="true" />
-<perch:content id="ticketSalesDate" type="date" time="true" format="%s" label="Ticket Date" required="true" order="2" suppress="true" />
+<perch:content id="date" type="date" time="true" label="Event date" required="true" order="2" suppress="true" default="2017-01-01 18:00" />
+<perch:content id="eventDisplayDate" type="date" time="true" format="%s" label="Announcement Date" required="true" order="2" suppress="true" format="%Y-%m-%d %H:%M" default="2017-01-01 13:00" />
+<perch:content id="ticketSalesDate" type="date" time="true" format="%s" label="Ticket Date" required="true" order="2" suppress="true" default="2017-01-01 11:00" />
 <perch:content id="titoCode" type="text" label="Tito Code (no Url)" order="3" suppress="true" />
 
-    <div datetime="<perch:content id="date" type="date" time="true" format="%Y-%m-%d %H:%M" default="%Y-%m-%d 17:00" />">
+    <div datetime="<perch:content id="date" type="date" time="true" format="%Y-%m-%d %H:%M" default="2017-01-01 18:00" />">
 
         <h1><perch:content id="title" type="text" label="Title" required="true" title="true" order="1" /></h1>
 
