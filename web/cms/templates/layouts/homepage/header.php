@@ -9,7 +9,7 @@
             $monthDate = date("1-m-Y", strtotime("+1 month"));
             PerchSystem::set_var('todaysDate', date('U'));
             PerchSystem::set_var('nextMonth', date("F", strtotime("+1 month")));
-            PerchSystem::set_var('nextEvent', date('d-m-Y', strtotime('first thursday', strtotime($monthDate))));
+            PerchSystem::set_var('nextEvent', date('d-m-Y', strtotime('thursday', strtotime($monthDate))));
 
 
             $filters = array(
