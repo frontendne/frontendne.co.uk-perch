@@ -1,6 +1,6 @@
 <perch:form id="talk-submission" method="post" app="perch_forms" class="talk-submission">
 
-    <div>
+    <div class="form-group">
         <perch:error for="name" type="required"><span class="error"></perch:error>
         <perch:label for="name">What's your name?</perch:label>
         <perch:input type="text" id="name" required="true" label="Name" antispam="name" />
@@ -8,7 +8,25 @@
         <small>(So we know what to call you!)</small>
     </div>
 
-    <div>
+    <div class="form-group">
+        <perch:error for="location" type="required"><span class="error"></perch:error>
+        <perch:label for="location">Where are you based?</perch:label>
+        <perch:input type="text" id="location" required="true" label="Location" antispam="body" />
+        <perch:error for="location" type="required"></span></perch:error>
+        <small>(This lets us know whether we'll need to set some money aside to help with your travel/accommodation)</small>
+    </div>
+
+    <div class="form-group">
+        <perch:error for="email" type="required"><span class="error"></perch:error>
+        <perch:error for="email" type="format"><span class="error"></perch:error>
+        <perch:label for="email">What's your email address?</perch:label>
+        <perch:input type="email" id="email" required="true" label="Email" antispam="email" />
+        <perch:error for="email" type="required"></span></perch:error>
+        <perch:error for="email" type="format"></span></perch:error>
+        <small>(We need to be able to contact you!)</small>
+    </div>
+
+    <div class="form-group">
         <perch:error for="title" type="required"><span class="error"></perch:error>
         <perch:label for="title">What's the title of your talk?</perch:label>
         <perch:input type="text" id="title" required="true" label="Title" antispam="name" />
@@ -16,7 +34,7 @@
         <small>(Don't worry if you're a bit unsure – it's won't be set in stone. It's just we we can get an overview)</small>
     </div>
 
-    <div>
+    <div class="form-group">
         <perch:error for="outline" type="required"><span class="error"></perch:error>
         <perch:label for="outline">Give us a brief outline of your talk</perch:label>
         <perch:input type="textarea" id="outline" required="true" label="Outline" antispam="body" />
@@ -24,22 +42,22 @@
         <small>(Somewhere around 100 - 150 words outlining the content should do the trick. We're not looking for an essay here, but we do need to know what you're talking about)</small>
     </div>
 
-    <div>
-        <perch:error for="message" type="required"><span class="error"></perch:error>
-        <perch:label for="message">Provide details of any talks you've previously given</perch:label>
-        <perch:input type="textarea" id="message" required="true" label="Message" antispam="body" />
-        <perch:error for="message" type="required"></span></perch:error>
-        <small>(Links to videos would be ideal, but we're happy with slides, or even witty anecdotes)</small>
+    <div class="form-group">
+        <perch:error for="duration" type="required"><span class="error"></perch:error>
+        <fieldset>
+            <legend>How long is your talk?</legend>
+            <perch:input id="duration" type="radio" required="true" options="20ish minutes|twenty, 40ish minutes|forty" />
+        </fieldset>
+        <perch:error for="duration" type="required"></span></perch:error>
+        <small>(A short half-way break should be factored into 40 minute talks)</small>
     </div>
 
-    <div>
-        <perch:error for="email" type="required"><span class="error"></perch:error>
-        <perch:error for="email" type="format"><span class="error"></perch:error>
-        <perch:label for="email">What's your email address?</perch:label>
-        <perch:input type="email" id="email" required="true" label="Email" antispam="email" />
-        <perch:error for="email" type="required"></span></perch:error>
-        <perch:error for="email" type="format"></span></perch:error>
-        <small>We need to be able to contact you!</small>
+    <div class="form-group">
+        <perch:error for="previous" type="required"><span class="error"></perch:error>
+        <perch:label for="previous">Provide details of any talks you've previously given</perch:label>
+        <perch:input type="textarea" id="previous" required="true" label="Previous" antispam="body" />
+        <perch:error for="previous" type="required"></span></perch:error>
+        <small>(Links to videos would be ideal, but we're happy with slides, or even witty anecdotes)</small>
     </div>
 
     <span style="position: absolute; width: 0; height: 0; left: -9999px;">
