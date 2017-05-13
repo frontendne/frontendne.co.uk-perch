@@ -5,9 +5,11 @@
 node_modules/
 /web/cms/resources/
 /web/img/
+/web/fonts/
 favicon.ico
 /web/cms/addons/feathers/frontendne/css/*.map
 /web/cms/addons/feathers/frontendne/img/
+/web/cms/addons/feathers/frontendne/fonts/
 /web/cms/config/config.php
 /assets/components/
 .editorconfig
