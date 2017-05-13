@@ -372,10 +372,22 @@ animation__bounce-in-down,
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite; }
 
+@font-face {
+  font-family: 'Futura';
+  src: url("../fonts/338B28_0_0.woff2") format("woff2"), url("../fonts/338B28_0_0.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Futura';
+  src: url("../fonts/33B593_0_0.woff2") format("woff2"), url("../fonts/33B593_0_0.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
 html {
   direction: ltr;
   display: block;
-  font-family: sans-serif, "Georgia", serif;
+  font-family: sans-serif;
   font-size: 0.85714em;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
@@ -444,7 +456,7 @@ textarea, select {
   border-radius: 0;
   color: #4c5c7e;
   display: block;
-  font-family: sans-serif, "Georgia", serif;
+  font-family: sans-serif;
   font-size: 1em;
   font-weight: 400;
   line-height: 1em;
@@ -464,13 +476,13 @@ textarea, select {
     outline: none; }
 
 [type="submit"] {
-  font-family: futura, verdana, sans-serif;
+  font-family: "Futura", verdana, sans-serif;
   margin-top: 1em; }
 
 label,
 legend {
   display: block;
-  font-family: futura, verdana, sans-serif;
+  font-family: "Futura", verdana, sans-serif;
   margin-top: 1em; }
 
 fieldset {
@@ -478,7 +490,7 @@ fieldset {
   margin-top: 1em; }
   fieldset label {
     display: inline-block;
-    font-family: sans-serif, "Georgia", serif;
+    font-family: sans-serif;
     margin-left: .5em;
     margin-right: 1em;
     margin-top: 0; }
@@ -514,7 +526,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: futura, verdana, sans-serif;
+  font-family: "Futura", verdana, sans-serif;
   font-weight: 600;
   line-height: 1em;
   margin: 1.61803em 0 0.61803em;
@@ -616,7 +628,7 @@ img {
   cursor: pointer;
   display: inline-block;
   fill: #fff;
-  font-family: futura, verdana, sans-serif;
+  font-family: "Futura", verdana, sans-serif;
   font-size: 1em;
   -webkit-font-smoothing: antialiased;
   line-height: 1em;
@@ -665,7 +677,7 @@ img {
     width: 2em; }
 
 .event-promotion__buttons {
-  font-family: futura, verdana, sans-serif; }
+  font-family: "Futura", verdana, sans-serif; }
   @media (min-width: 28em) {
     .event-promotion__buttons {
       display: -webkit-box;
@@ -741,7 +753,7 @@ img {
     color: currentColor; }
   .main__header time,
   .main__header .location {
-    font-family: futura, verdana, sans-serif; }
+    font-family: "Futura", verdana, sans-serif; }
 
 .main__header--compact {
   min-height: 0;
@@ -753,7 +765,7 @@ img {
   width: 100%; }
 
 [role="navigation"] {
-  font-family: futura, verdana, sans-serif;
+  font-family: "Futura", verdana, sans-serif;
   margin-bottom: 3em;
   text-align: center;
   text-transform: uppercase; }
@@ -1214,7 +1226,7 @@ tito-button button {
   border: 0;
   color: currentcolor;
   cursor: pointer;
-  font-family: futura, verdana, sans-serif;
+  font-family: "Futura", verdana, sans-serif;
   font-size: 1em;
   line-height: 1em;
   margin: 0;
