@@ -1,5 +1,21 @@
-$primary-font: futura, verdana, sans-serif;
-$secondary-font: sans-serif, 'Georgia', serif;
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/338B28_0_0.woff2') format('woff2'),
+       url('../fonts/338B28_0_0.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/33B593_0_0.woff2') format('woff2'),
+       url('../fonts/33B593_0_0.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$primary-font: 'Futura', verdana, sans-serif;
+$secondary-font: sans-serif;
 $heading-font: $primary-font;
 $body-font: $secondary-font;
 
