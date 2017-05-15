@@ -1,11 +1,8 @@
 <?php
-
-  // Header
-  perch_layout('global/head', [
+  perch_layout('head', [
     'body-class' => 'speakers',
   ]);
 
-  // Page content
   perch_content('Primary content');
   perch_collection('Speakers', [
       'template'   => 'speaker_listing.html',
@@ -16,5 +13,4 @@
       'value'      => 'published'
   ]);
 
-  // Footer
-  perch_layout('global/footer');
+  perch_layout('footer');

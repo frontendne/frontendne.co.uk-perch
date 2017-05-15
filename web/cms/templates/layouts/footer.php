@@ -1,5 +1,4 @@
 
-
           <section class="mailing-list">
 
               <h2 id="mailing-list">Sign up to stay notified</h2>

@@ -1,10 +1,4 @@
 <?php
-
-  // Header
-  perch_layout('global/head');
-
-  // Page content
+  perch_layout('head');
   perch_content('Primary content');
-
-  // Footer
-  perch_layout('global/footer');
+  perch_layout('footer');
