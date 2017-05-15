@@ -1,12 +1,7 @@
 <?php
-
-  // Header
-  perch_layout('global/head', [
+  perch_layout('head', [
     'body-class' => 'talks',
   ]);
-
-  // Page content
-
   echo '<div>';
 
   if (perch_get('cat')) {
@@ -31,5 +26,4 @@
     ));
   }
 
-  // Footer
-  perch_layout('global/footer');
+  perch_layout('footer');

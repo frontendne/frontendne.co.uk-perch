@@ -1,11 +1,8 @@
 <?php
-
-  // Header
-  perch_layout('global/head', [
+  perch_layout('head', [
     'body-class' => 'talks',
   ]);
 
-  // Page content
   perch_content('Primary content');
   perch_collection('Talks', [
       'template'   => 'talk_listing.html',
@@ -16,5 +13,4 @@
       'value'      => 'published'
   ]);
 
-  // Footer
-  perch_layout('global/footer');
+  perch_layout('footer');
