@@ -1,3 +1,10 @@
+<div class="ad" style="padding-top: .5em; padding-bottom: .5em; text-align: center;">
+  <div class="wrapper" style="">
+    <em>Pssst&hellip;</em> we're holding a <strong>conference</strong> in <strong>April 2018</strong> – <a href="https://2018.frontendne.co.uk">check&nbsp;it&nbsp;out</a>!
+  </div>
+</div>
+
+
 <header class="main__header<?php
         if (perch_layout_var('page', true) !== 'home') {
             echo ' main__header--compact';
