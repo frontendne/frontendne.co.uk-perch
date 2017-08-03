@@ -41,6 +41,7 @@
         perch_layout('_attributes');
         perch_layout('_apple_touch_icon');
         perch_layout('_favicon');
+        perch_layout('_feeds');
         perch_content('Google Analytics');
         perch_get_css();
     ?>
