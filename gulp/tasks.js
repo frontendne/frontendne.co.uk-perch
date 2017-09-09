@@ -14,10 +14,9 @@ gulp.task('dev', function(cb) {
 });
 
 gulp.task('build', function(cb) {
-    runSequence([
+    runSequence(
         'clean-all',
         'sass:build',
-        'js:build',
-    ]);
+        'js:build');
 });
 
