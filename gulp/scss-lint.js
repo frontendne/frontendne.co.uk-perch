@@ -1,6 +1,6 @@
 'use strict';
 var gulp = require('gulp'),
-    scsslint = require('gulp-scss-lint');
+    sassLint = require('gulp-sass-lint');
 
 gulp.task('scss-lint', function () {
     gulp.src([
@@ -8,7 +8,8 @@ gulp.task('scss-lint', function () {
             '!./assets/scss/screen.scss',
             '!./assets/scss/base/_shame.scss',
             '!./assets/scss/base/_reset.scss',
-        ]).pipe(scsslint({
+        ]).pipe(sassLint({
             'config': '.scss-lint.yml'
-        }));
+        }))
+        .pipe(sassLint.format());
 });

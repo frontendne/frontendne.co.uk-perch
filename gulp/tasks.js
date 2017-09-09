@@ -9,12 +9,13 @@ gulp.task('dev', function(cb) {
     runSequence([
         'sass:dev',
         'js:dev',
-        'watch'
+        'watch-no-sync'
     ]);
 });
 
 gulp.task('build', function(cb) {
     runSequence([
+        'clean-all',
         'sass:build',
         'js:build',
     ]);

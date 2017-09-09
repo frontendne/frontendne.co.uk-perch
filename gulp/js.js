@@ -12,7 +12,6 @@ gulp.task('js:dev', function () {
 
 gulp.task('js:build', function () {
     runSequence([
-        'jshint',
         'browserify:build'
     ]);
 });

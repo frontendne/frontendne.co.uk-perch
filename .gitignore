@@ -2,6 +2,7 @@
 .sass-cache
 .tmp
 .grunt
+package-lock.json
 node_modules/
 /web/cms/resources/
 /web/img/
@@ -14,5 +15,4 @@ favicon.ico
 /assets/components/
 /assets/fonts/
 .editorconfig
-/web/cms/addons/feathers/**
 /web/cms/addons/feathers/**
