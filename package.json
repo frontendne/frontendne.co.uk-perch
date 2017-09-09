@@ -33,6 +33,7 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
+    "gulp-clean": "^0.3.2",
     "mapbox.js": "^2.2.1",
     "susy": "^2.2.12"
   }
