@@ -4,7 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <title><?php perch_pages_title(); ?></title>
     <?php
         if (perch_layout_var('page', true) == 'event') {
             $collection = 'Events';
