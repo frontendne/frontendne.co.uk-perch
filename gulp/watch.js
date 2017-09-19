@@ -9,3 +9,9 @@ gulp.task('watch', function(cb) {
     ]);
 });
 
+gulp.task('watch-no-sync', function(cb) {
+    runSequence([
+        'sass:watch',
+        'js:watch'
+    ]);
+});

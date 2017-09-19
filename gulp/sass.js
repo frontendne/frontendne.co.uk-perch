@@ -6,14 +6,13 @@ var gulp = require('gulp'),
 gulp.task('sass:dev', function () {
     runSequence([
         'scss-lint',
-        'compile-sass:dev',
+        'compile-sass:dev'
     ]);
 });
 
 gulp.task('sass:build', function () {
     runSequence([
-        'scss-lint',
-        'compile-sass:build',
+        'compile-sass:build'
     ]);
 });
 
