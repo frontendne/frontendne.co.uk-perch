@@ -7,6 +7,7 @@ gulp.task('default', function(cb) {
 
 gulp.task('dev', function(cb) {
     runSequence([
+        'font:move',
         'sass:dev',
         'js:dev',
         'watch-no-sync'
@@ -15,6 +16,7 @@ gulp.task('dev', function(cb) {
 
 gulp.task('build', function(cb) {
     runSequence(
+        'font:move',
         'clean-all',
         'sass:build',
         'js:build');
