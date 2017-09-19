@@ -13,7 +13,14 @@ $names = array(
     9 => array('name' => 'Peter', 'email' => 'p.gibbins@initech.com'),
     10 => array('name' => 'Stanley Ipkiss', 'email' => 'somebody-stop-me@yahoo.com'),
     11 => array('name' => 'Pete Mitchell', 'email' => 'maverick@topgunacademy.gov'),
-    12 => array('name' => 'Rimmer', 'email' => 'a.rimmer@jmc.org')
+    12 => array('name' => 'Rimmer', 'email' => 'a.rimmer@jmc.org'),
+    13 => array('name' => 'Princess Leia Organa', 'email' => 'leia@rebelalliance.org'),
+    14 => array('name' => 'Diana Prince', 'email' => 'ww@JusticeLeague.org'),
+    15 => array('name' => 'Ada Lovelace', 'email' => 'ada@bcs.org'),
+    16 => array('name' => 'Hemione Granger', 'email' => 'h.grainger@hogwarts.edu'),
+    17 => array('name' => 'Ellen Ripley', 'email' => 'hr@weyland-yutani.jp'),
+    18 => array('name' => 'Sarah Connor', 'email' => 'alert@skynet.com'),
+    19 => array('name' => 'Jessica Jones', 'email' => 'private-investigator@jj.com')
     );
 
 $nameToUse = array_rand($names, 1)
@@ -31,7 +38,7 @@ $nameToUse = array_rand($names, 1)
                         <input aria-describedby="hint-name" type="text" id="mce-NAME" name="NAME" required class="valid" />
                         <label for="mce-EMAIL">Your email address
                         </label>
-                        <span id="hint-email">For example, For example, <? echo $names[$nameToUse]['email']; ?></span>
+                        <span id="hint-email">For example, <? echo $names[$nameToUse]['email']; ?></span>
 
                         <input aria-describedby="hint-email" type="email" id="mce-EMAIL" name="EMAIL" required class="valid" />
                         <button type="submit">Submit</button>
