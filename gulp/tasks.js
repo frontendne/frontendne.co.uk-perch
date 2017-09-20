@@ -16,8 +16,8 @@ gulp.task('dev', function(cb) {
 
 gulp.task('build', function(cb) {
     runSequence(
-        'font:move',
         'clean-all',
+        'font:move',
         'sass:build',
         'js:build');
 });

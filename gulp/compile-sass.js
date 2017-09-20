@@ -15,7 +15,7 @@ gulp.task('compile-sass:dev', function () {
 
 gulp.task('compile-sass:build', function () {
     gulp.src('./assets/scss/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(postcss([
             autoprefixer()]))
         .pipe(gulp.dest('./web/cms/addons/feathers/frontendne/css'));
