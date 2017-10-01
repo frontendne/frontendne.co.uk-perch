@@ -34,11 +34,11 @@ $nameToUse = array_rand($names, 1)
                     <form action="//sambeckham.us3.list-manage.com/subscribe/post?u=9a08ccca86dad8eae63b29a88&amp;id=2524deef25" method="post">
                         <label for="mce-NAME">Your name
                         </label>
-                        <span id="hint-name">For example, <? echo $names[$nameToUse]['name']; ?></span>
+                        <span id="hint-name">For example, <?php echo $names[$nameToUse]['name']; ?></span>
                         <input aria-describedby="hint-name" type="text" id="mce-NAME" name="NAME" required class="valid" />
                         <label for="mce-EMAIL">Your email address
                         </label>
-                        <span id="hint-email">For example, <? echo $names[$nameToUse]['email']; ?></span>
+                        <span id="hint-email">For example, <?php echo $names[$nameToUse]['email']; ?></span>
 
                         <input aria-describedby="hint-email" type="email" id="mce-EMAIL" name="EMAIL" required class="valid" />
                         <button type="submit">Submit</button>
