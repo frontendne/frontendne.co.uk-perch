@@ -31,7 +31,7 @@ $nameToUse = array_rand($names, 1)
 
                 <h2 id="mailing-list">Sign up to stay notified</h2>
                 <div id="mailing-list__sign-up" class="mailing-list__sign-up--form">
-                    <form action="//sambeckham.us3.list-manage.com/subscribe/post?u=9a08ccca86dad8eae63b29a88&amp;id=2524deef25" method="post">
+                    <form action="//sambeckham.us3.list-manage.com/subscribe/post?u=9a08ccca86dad8eae63b29a88&amp;id=2524deef25" class="mailing-list__sign-up__form" method="post">
                         <label for="mce-NAME">Your name
                         </label>
                         <span id="hint-name">For example, <?php echo $names[$nameToUse]['name']; ?></span>
