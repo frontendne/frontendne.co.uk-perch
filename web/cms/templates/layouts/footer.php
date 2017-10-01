@@ -1,4 +1,4 @@
-<?
+<?php
 
 $names = array(
     0 => array('name' => 'Luke Skywalker', 'email' => 'luke@rebelalliance.org'),
