@@ -25,14 +25,14 @@
                 PerchSystem::set_var('nextEvent', date('d-m-Y', strtotime('thursday', strtotime($monthDate))));
                 $filters = [
                     [
-                      'filter'     => 'date',
-                      'match'      => 'gte',
-                      'value'      => date('Y-m-d')
+                        'filter' => 'date',
+                        'match'  => 'gte',
+                        'value'  => date('Y-m-d')
                     ],
                     [
-                      'filter'     => 'eventDisplayDate',
-                      'match'      => 'lte',
-                      'value'      => date('Y-m-d H:i:s')
+                        'filter' => 'eventDisplayDate',
+                        'match'  => 'lte',
+                        'value'  => date('Y-m-d H:i:s')
                     ],
                 ];
                 perch_collection('Events', [
