@@ -4,7 +4,6 @@
   </div>
 </div>
 
-
 <header class="main__header<?php
         if (perch_layout_var('page', true) !== 'home') {
             echo ' main__header--compact';
