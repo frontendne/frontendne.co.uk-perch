@@ -1,7 +1,7 @@
 <?php
     perch_content_custom('Advert', [
         'template' => 'advert.html',
-        'filter'   =>'display',
+        'filter'   => 'display',
         'match'    => 'eq',
         'value'    => 'display'
     ]);
