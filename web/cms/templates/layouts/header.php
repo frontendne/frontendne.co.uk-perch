@@ -1,8 +1,11 @@
-<div class="banner__conf">
-  <div class="wrapper">
-    <em>Pssst&hellip;</em> we're holding a <strong>conference</strong> in <strong>April 2018</strong> – <a href="https://2018.frontendne.co.uk">check&nbsp;it&nbsp;out</a>!
-  </div>
-</div>
+<?php
+    perch_content_custom('Advert', [
+        'template' => 'advert.html',
+        'filter'   =>'display',
+        'match'    => 'eq',
+        'value'    => 'display'
+    ]);
+?>
 
 <header class="main__header<?php
         if (perch_layout_var('page', true) !== 'home') {
@@ -32,7 +35,6 @@
                       'value'      => date('Y-m-d H:i:s')
                     ],
                 ];
-
                 perch_collection('Events', [
                     'template'   => 'event_next.html',
                     'sort'       => 'date',
