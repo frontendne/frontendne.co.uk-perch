@@ -2,56 +2,35 @@
 <perch:content id="ticketSalesDate" type="date" time="true" format="%s" label="Ticket On Sale" required="true" order="2" suppress="true" />
 <perch:content id="titoCode" type="text" label="Tito Code (no Url)" order="3" suppress="true" />
 
-
 <section class="event-promotion" datetime="<perch:content id="date" type="date" time="true" format="%Y-%m-%d 18:00" />">
-
-      <span>Our next event&hellip;</span>
-
+    <span>Our next event&hellip;</span>
     <h1><perch:content id="title" type="text" label="Title" required="true" title="true" order="1" /></h1>
-
     <time class="date" data-day="<perch:content id="date" type="date" time="true" format="%d" />"><perch:template path="includes/svg/date.svg" /><perch:content id="date" type="date" time="true" format="%-d %B" /></time>
-
     <time class="time"><perch:template path="includes/svg/time.svg" />18:00</time>
-
-    <a href="#map" class="location"><perch:template path="includes/svg/location.svg" />Mining Institute</a>
-</section>
-
-    <perch:content id="introduction" type="textarea" label="Introduction" markdown="true" help="Short version for home page" />
-
+    <a href="#map" class="location">
+        <perch:template path="includes/svg/location.svg" />
+        Mining Institute
+    </a>
+    <p><perch:content id="introduction" type="textarea" label="Introduction" striptags="true" help="Short version for home page" /></p>
     <div class="event-promotion__buttons">
-
-    <perch:content id="archived" />
-
-    <perch:if id="archived" match="neq" value="yes">
-        <perch:if  id="ticketSalesDate" match="lte" value="{todaysDate}" format="%s">
-                        <tito-button event="frontendne/<perch:content id="titoCode" />">Get a ticket</tito-button>
-         </perch:if>
-    </perch:if>
-
+        <perch:content id="archived" />
+        <perch:if id="archived" match="neq" value="yes">
+            <perch:if  id="ticketSalesDate" match="lte" value="{todaysDate}" format="%s">
+                <tito-button event="frontendne/<perch:content id="titoCode" />">Get a ticket</tito-button>
+            </perch:if>
+        </perch:if>
         <a href="/events/<perch:content id="slug" type="slug" />" class="button">Event details</a>
-
     </div>
-
 </section>
-
 
 <perch:noresults>
-  <section class="event-promotion">
     <section class="event-promotion" datetime="<perch:content id="nextEvent" type="date" time="true" format="%Y-%m-%d 18:00" />">
-
         <span>Our next event&hellip;</span>
-
         <h1><perch:content id="nextMonth" type="text" label="Title" required="true" title="true" order="1" /> event</h1>
-
         <time class="date" data-day="<perch:content id="nextEvent" type="date" time="true" format="%d" />"><perch:template path="includes/svg/date.svg" /><perch:content id="nextEvent" type="date" time="true" format="%-d %B" /></time>
-
         <time class="time"><perch:template path="includes/svg/time.svg" />18:00</time>
-
         <a href="#map" class="location"><perch:template path="includes/svg/location.svg" />Mining Institute</a>
+        <p>Event will be announced shortly.</p>
+        <a href="#mailing-list" class="button">Join our mailing list for more details.</a>
     </section>
-
-    <p>Event will be announced shortly.</p>
-
-    <a href="#mailing-list" class="button"> Join our mailing list for more details.</a>
-  </section>
 </perch:noresults>
