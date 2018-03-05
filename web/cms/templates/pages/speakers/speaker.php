@@ -5,9 +5,18 @@
     ]);
     perch_collection('Speakers', [
         'template' => 'profile.html',
-        'filter'   => 'slug',
-        'match'    => 'eq',
-        'value'    => perch_get('s'),
+        'filter'     => [
+          [
+            'filter' => 'slug',
+            'match'  => 'eq',
+            'value'  => perch_get('s'),
+          ],
+          [
+            'filter' => 'status',
+            'match'  => 'eq',
+            'value'  => 'published',
+          ],
+        ],
         'count'    => 1,
     ]);
     perch_collection('Talks', [
