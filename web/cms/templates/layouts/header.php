@@ -26,14 +26,13 @@
                 PerchSystem::set_var('nextEvent', date('d-m-Y', strtotime('thursday', strtotime($monthDate))));
 
                 $override_details = perch_content_custom('Event override', [
-                    'skip-template' => 'true',
-                    'return-html'   => 'true',
+                    'skip-template' => 'true'
                 ]);
                 $override = $override_details['0']['override'];
 
                 if ($override == 'override') {
                     perch_content_custom('Event override', [
-                        'template' => 'event_override.html',
+                        'template' => 'event_override.html'
                     ]);
                 } else {
                     $filters = [
