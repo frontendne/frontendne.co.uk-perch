@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "gulp-clean": "^0.3.2",
-    "mapbox.js": "^2.2.1",
+    "mapbox-gl": "0.46.0",
     "susy": "^2.2.12"
   }
 }
