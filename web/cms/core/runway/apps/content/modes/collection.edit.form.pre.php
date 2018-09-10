@@ -1,5 +1,9 @@
 <?php
 
+    $API    = new PerchAPI(1.0, 'core');
+    $Lang   = $API->get('Lang');
+    $HTML   = $API->get('HTML');
+
     $Item     = false;
     $NextItem = false;
     $PrevItem = false;
@@ -7,7 +11,8 @@
     $place_token_on_main = false;
 
     // test to see if image folder is writable
-    $image_folder_writable = is_writable(PERCH_RESFILEPATH);
+    $DefaultBucket = PerchResourceBuckets::get();
+    $image_folder_writable = $DefaultBucket->ready_to_write();
 
     // set the current user
 	$Collection->set_current_user($CurrentUser->id());
@@ -26,6 +31,8 @@
             $PrevItem   = $Items->find_previous_item($Item);
         }
     }
+
+    $lock_key = 'collection:'.$Collection->id().':'.$item_id;
 
     $item_count         = 1;
 
@@ -74,7 +81,12 @@
 			$Alert->set('error', PerchLang::get('The template for this collection (%s) cannot be found.', '<code>'.$Collection->collectionTemplate().'</code>'));
 		}
 
-        $tags   = $Template->find_all_tags_and_repeaters('content');
+        if (PerchUtil::post('generate-summary')) {
+            echo PerchContent_Util::get_content_summary(PerchUtil::post('updated'), PerchUtil::post('fields'), $Template);
+            exit;
+        }
+
+        $tags   = $Template->find_all_tags_and_repeaters('content', false, true);
 
         $template_help_html = $Template->find_help();
 
@@ -151,9 +163,9 @@
             if (isset($_POST['save_as_draft'])) {
                 $Alert->set('success', PerchLang::get('Draft successfully updated'));
             }else{
-                PerchUtil::debug('Publishing');
-                $Item->publish();
-                PerchUtil::debug('Published');
+                if ($Collection->role_may_publish($CurrentUser)) {
+                    $Item->publish();
+                }
                 $Alert->set('success', PerchLang::get('Content successfully updated'));
             }
 
@@ -193,7 +205,8 @@
             }
 
             // Clear values from Post (for reordering of blocks etc)
-            $_POST = array();
+            $_POST = array(); // Slowly refactoring this. Baby steps.
+            PerchRequest::reset_post();
 
             $details    = $Collection->get_items_for_editing($item_id);
 
@@ -214,7 +227,7 @@
     }
 
     if (!$image_folder_writable) {
-        $Alert->set('error', PerchLang::get('Your resources folder is not writable. Make this folder (') . PerchUtil::html(PERCH_RESPATH) . PerchLang::get(') writable if you want to upload files and images.'));
+        $Alert->set('error', PerchLang::get('Your resources folder is not writable. Make this folder (') . PerchUtil::html($DefaultBucket->get_file_path()) . PerchLang::get(') writable if you want to upload files and images.'));
     }
 
     // is it a draft?
@@ -236,7 +249,7 @@
                 $preview_url = $search_url . '?' . PERCH_PREVIEW_ARG.'=all';
             }
 
-            $Alert->set('draft', PerchLang::get('You are editing a draft.') . ' <a href="'.PerchUtil::html($preview_url).'" class="action draft-preview">'.PerchLang::get('Preview').'</a>');
+            $Alert->set('draft', PerchLang::get('You are editing a draft.') . ' <a href="'.PerchUtil::html($preview_url).'" class="button button-small action-warning viewext">'.PerchLang::get('Preview').'</a>');
 
         }else{
             $Alert->set('draft', PerchLang::get('You are editing a draft.'));
