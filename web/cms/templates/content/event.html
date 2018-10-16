@@ -27,6 +27,11 @@
 
     <perch:content id="details" type="textarea" label="Details" markdown="true" />
 
+    <perch:if exists="sponsors">
+        <h2>Sponsors</h2>
+        <perch:content id="sponsors" type="textarea" label="Sponsors" markdown="true" />
+    </perch:if>
+
     <h2>Tickets</h2>
 
     <p>Tickets are up for grabs here <strong>11:00 on the <perch:content id="ticketSalesDate" type="date" time="true" format="jS \of F" /></strong>. Make sure you're <a href="#mailing-list">on the mailing list</a> and you'll get a reminder email on the morning of the <perch:content id="ticketSalesDate" type="date" time="true" format="jS" />.</p>
