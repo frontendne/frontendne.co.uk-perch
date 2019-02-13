@@ -4,13 +4,13 @@ var mapboxgl = require('mapbox-gl');
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtZGJlY2toYW0iLCJhIjoiSVk5cS1UTSJ9.0lCowgljkS2VZ_8ToBkPUA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/samdbeckham/cjiuq7cl44pq12sntmsmsobtm'
+    style: 'mapbox://styles/samdbeckham/cjs3mmotr1kyn1fk8zk990mcz'
 });
 
 
 map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['frontendne-venue'] // replace this with the name of the layer
+      layers: ['frontendne-venue-new'] // replace this with the name of the layer
     });
   
     if (!features.length) {
